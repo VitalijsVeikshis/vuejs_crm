@@ -46,6 +46,9 @@ group :development do
 end
 
 group :test do
+  # BDD
+  gem 'capybara'
+
   gem 'shoulda-matchers'
 end
 
