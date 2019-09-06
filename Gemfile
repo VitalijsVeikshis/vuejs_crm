@@ -49,6 +49,8 @@ group :test do
   # BDD
   gem 'capybara'
 
+  gem 'rails-controller-testing'
+
   gem 'shoulda-matchers'
   gem 'webdrivers'
 end
