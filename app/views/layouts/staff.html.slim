@@ -1,0 +1,16 @@
+doctype html
+html
+  head
+    title
+      | VuejsCrm
+    = csrf_meta_tags
+    = csp_meta_tag
+    = javascript_pack_tag 'staff'
+    = stylesheet_pack_tag 'staff'
+  body
+    = render 'shared/nav'
+    p.notice
+      = notice
+    p.alert
+      = alert
+    = yield
