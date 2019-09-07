@@ -6,10 +6,10 @@ feature 'User can sign in', %(
   As an unauthenticated user
   I'd like to be able to sign in
 ), js: true do
-  describe 'Registered' do
-    given(:staff) { create(:staff) }
-    given(:client) { create(:client) }
+  given(:staff) { create(:staff) }
+  given(:client) { create(:client) }
 
+  describe 'Registered' do
     scenario 'staff sign in' do
       visit new_staff_session_path
 
@@ -54,6 +54,24 @@ feature 'User can sign in', %(
 
       expect(page).to have_content 'Invalid Email or password.'
       expect(page).to have_no_content 'Hello Client!'
+    end
+  end
+
+  describe 'Redirect to root' do
+    scenario 'if unauthenticated client' do
+      sign_in_as(staff)
+
+      visit client_root_path
+
+      expect(page).to have_no_content 'Hello Client!'
+    end
+
+    scenario 'if unauthenticated staff' do
+      sign_in_as(client)
+
+      visit staff_root_path
+
+      expect(page).to have_no_content 'Hello Staff!'
     end
   end
 end

@@ -3,11 +3,7 @@
 class Staff::LandingController < ApplicationController
   layout 'staff'
 
-  def index
-    if current_staff
-      render :index
-    else
-      redirect_to root_path
-    end
-  end
+  before_action :authenticate_staff!
+
+  def index; end
 end

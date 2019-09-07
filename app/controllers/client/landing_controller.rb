@@ -3,11 +3,7 @@
 class Client::LandingController < ApplicationController
   layout 'client'
 
-  def index
-    if current_client
-      render :index
-    else
-      redirect_to root_path
-    end
-  end
+  before_action :authenticate_client!
+
+  def index; end
 end
