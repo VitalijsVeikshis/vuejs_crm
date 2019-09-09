@@ -38,3 +38,17 @@ shared_examples_for 'API Authenticable' do |user_type, request_format|
     end
   end
 end
+
+shared_examples_for 'API failure request' do |response_status|
+  it "renders json with status #{response_status}" do
+    do_request(request_params)
+    expect(response).to have_http_status response_status
+  end
+end
+
+shared_examples_for 'API success request' do |response_status|
+  it "renders json with status #{response_status}" do
+    do_request(request_params)
+    expect(response).to have_http_status response_status
+  end
+end
