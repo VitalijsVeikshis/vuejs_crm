@@ -4,8 +4,8 @@ class DeviseCreateStaffs < ActiveRecord::Migration[6.0]
   def change
     create_table :staffs do |t|
       ## Database authenticatable
-      t.string :email,              null: false, default: ""
-      t.string :encrypted_password, null: false, default: ""
+      t.string :email,              null: false, default: ''
+      t.string :encrypted_password, null: false, default: ''
 
       ## Recoverable
       t.string   :reset_password_token
@@ -32,6 +32,8 @@ class DeviseCreateStaffs < ActiveRecord::Migration[6.0]
       # t.string   :unlock_token # Only if unlock strategy is :email or :both
       # t.datetime :locked_at
 
+      # simple_token_authentication
+      t.string :authentication_token, limit: 30
 
       t.timestamps null: false
     end
@@ -40,5 +42,8 @@ class DeviseCreateStaffs < ActiveRecord::Migration[6.0]
     add_index :staffs, :reset_password_token, unique: true
     # add_index :staffs, :confirmation_token,   unique: true
     # add_index :staffs, :unlock_token,         unique: true
+
+    # simple_token_authentication
+    add_index :staffs, :authentication_token, unique: true
   end
 end
