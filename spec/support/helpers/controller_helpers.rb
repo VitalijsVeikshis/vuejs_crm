@@ -18,5 +18,9 @@ module Helpers
            request_params.dig(:action),
            params: request_params.dig(:options)
     end
+
+    def response_json
+      @response_json ||= JSON.parse(response.body, symbolize_names: true)
+    end
   end
 end
