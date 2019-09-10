@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  devise_for :clients
-  devise_for :staffs
+  devise_for :clients, skip: %i[registrations]
+  devise_for :staffs, skip: %i[registrations]
 
   root 'application#index'
 
