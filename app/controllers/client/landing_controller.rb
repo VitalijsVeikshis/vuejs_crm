@@ -3,8 +3,7 @@
 class Client::LandingController < ApplicationController
   layout 'client'
 
-  acts_as_token_authentication_handler_for Client, if: :json_request?
-  before_action :authenticate_client!, unless: :json_request?
+  before_action :authenticate_client!
 
   def index
     respond_to do |format|

@@ -3,8 +3,7 @@
 class Staff::LandingController < ApplicationController
   layout 'staff'
 
-  acts_as_token_authentication_handler_for Staff, if: :json_request?
-  before_action :authenticate_staff!, unless: :json_request?
+  before_action :authenticate_staff!
 
   def index
     respond_to do |format|
