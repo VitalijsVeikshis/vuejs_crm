@@ -2,7 +2,7 @@
 
 module Helpers
   module RequestHelpers
-    def receive_token_credentials(user)
+    def token_credentials_for(user)
       user.create_new_auth_token.slice('client', 'access-token', 'uid')
     end
   end

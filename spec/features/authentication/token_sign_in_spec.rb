@@ -7,7 +7,7 @@ describe 'Token authentication', type: :request do
     let(:client) { create(:client) }
 
     context 'with valid credentials' do
-      let(:credentials) { receive_token_credentials(client) }
+      let(:credentials) { token_credentials_for(client) }
 
       it 'redirects to client#index' do
         post client_session_path, params: credentials
@@ -33,7 +33,7 @@ describe 'Token authentication', type: :request do
     let(:staff) { create(:staff) }
 
     context 'with valid credentials' do
-      let(:credentials) { receive_token_credentials(staff) }
+      let(:credentials) { token_credentials_for(staff) }
 
       it 'redirects to staff#index' do
         post staff_session_path, params: credentials
