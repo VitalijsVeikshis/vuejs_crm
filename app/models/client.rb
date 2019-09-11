@@ -3,4 +3,6 @@ class Client < ApplicationRecord
          :recoverable,
          :rememberable,
          :validatable
+
+  include DeviseTokenAuth::Concerns::User
 end

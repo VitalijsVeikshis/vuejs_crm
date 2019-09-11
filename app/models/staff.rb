@@ -3,4 +3,6 @@ class Staff < ApplicationRecord
          :recoverable,
          :rememberable,
          :validatable
+
+  include DeviseTokenAuth::Concerns::User
 end
