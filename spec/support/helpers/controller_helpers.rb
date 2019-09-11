@@ -3,12 +3,8 @@
 module Helpers
   module ControllerHelpers
     def sign_in_as(user)
-      case user.class.name
-      when 'Staff'
-        @request.env['devise.mapping'] = Devise.mappings[:staff]
-      when 'Client'
-        @request.env['devise.mapping'] = Devise.mappings[:client]
-      end
+      user_type = user.class.name.downcase.to_sym
+      @request.env['devise.mapping'] = Devise.mappings[user_type]
 
       sign_in user
     end

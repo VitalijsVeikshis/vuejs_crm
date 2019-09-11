@@ -3,12 +3,8 @@
 module Helpers
   module FeatureHelpers
     def sign_in_as(user)
-      case user.class.name
-      when 'Staff'
-        visit new_staff_session_path
-      when 'Client'
-        visit new_client_session_path
-      end
+      user_type = user.class.name.downcase.pluralize
+      visit "/#{user_type}/sign_in"
 
       fill_in 'Email', with: user.email
       fill_in 'Password', with: user.password
