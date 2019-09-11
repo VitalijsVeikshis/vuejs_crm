@@ -35,6 +35,7 @@ RSpec.configure do |config|
   config.include FactoryBot::Syntax::Methods
   config.include Helpers::FeatureHelpers, type: :feature
   config.include Helpers::ControllerHelpers, type: :controller
+  config.include Helpers::RequestHelpers, type: :request
 
   Capybara.javascript_driver = :selenium_chrome_headless
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
