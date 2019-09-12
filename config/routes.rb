@@ -1,3 +1,18 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  devise_for :staffs, skip: %i[registrations]
+  devise_for :clients, skip: %i[registrations]
+
+  root 'application#index'
+
+  namespace :staff do
+    root 'landing#index'
+    mount_devise_token_auth_for 'Staff', at: 'auth', skip: %i[registrations]
+  end
+
+  namespace :client do
+    root 'landing#index'
+    mount_devise_token_auth_for 'Client', at: 'auth', skip: %i[registrations]
+  end
 end
