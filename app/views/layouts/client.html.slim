@@ -7,10 +7,5 @@ html
     = csp_meta_tag
     = javascript_pack_tag 'client'
     = stylesheet_pack_tag 'client'
-  body
-    = render 'shared/nav'
-    p.notice
-      = notice
-    p.alert
-      = alert
+  body style="margin: 0;" data-user-email="#{current_user.email}"
     = yield
