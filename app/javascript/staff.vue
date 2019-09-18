@@ -3,14 +3,17 @@
     app-navbar(v-bind:userEmail="userEmail")
     .main
       p {{ message }}
+      AppDashboard
 </template>
 
 <script>
 import AppNavbar from './components/layout/AppNavbar/AppNavbar.vue';
+import AppDashboard from './components/layout/AppDashboard/AppDashboard.vue';
 
 export default {
   components: {
     AppNavbar,
+    AppDashboard,
   },
   props: {
     userEmail: {

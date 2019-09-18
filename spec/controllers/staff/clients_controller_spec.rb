@@ -56,4 +56,20 @@ RSpec.describe Staff::ClientsController, type: :controller do
       end
     end
   end
+
+  describe 'GET #index' do
+    let(:staff) { create(:staff) }
+    let!(:clients) { create_list(:client, 3) }
+    let(:request_params) { { method: :get, action: :index } }
+
+    before { sign_in_as(staff) }
+
+    it 'returns clients list' do
+      do_request(request_params)
+
+      clients.each do |client|
+        expect(response_json).to include client.as_json
+      end
+    end
+  end
 end

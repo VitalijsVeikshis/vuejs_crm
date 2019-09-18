@@ -1,6 +1,10 @@
 # frozen_string_literal: true
 
 class Staff::ClientsController < ApplicationController
+  def index
+    render json: Client.order(created_at: :desc).as_json
+  end
+
   def create
     @client = Client.new(client_params)
 
