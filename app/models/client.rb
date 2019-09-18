@@ -9,7 +9,9 @@ class Client < ApplicationRecord
   include DeviseTokenAuth::Concerns::User
 
   validates :fullname, presence: true, length: { minimum: 5 }
-  validates :phone, presence: true, numericality: { only_integer: true }
+  validates :phone, presence: true,
+                    numericality: { only_integer: true },
+                    uniqueness: { case_sensitive: false }
   validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }
 
   before_validation :set_password, unless: :persisted?

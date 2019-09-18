@@ -10,6 +10,11 @@ RSpec.describe Client, type: :model do
     it { should validate_numericality_of(:phone).only_integer }
     it { should allow_value('test@mail.com').for(:email) }
     it { should_not allow_values('test', 'test@mail').for(:email) }
+
+    describe 'phone uniqueness' do
+      subject { create(:client) }
+      it { should validate_uniqueness_of(:phone).case_insensitive }
+    end
   end
 
   describe 'Callbacks' do
