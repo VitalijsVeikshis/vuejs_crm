@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   namespace :staff do
     root 'landing#index'
     mount_devise_token_auth_for 'Staff', at: 'auth', skip: %i[registrations]
+    resources :clients, only: %i[create], shallow: true
   end
 
   namespace :client do
