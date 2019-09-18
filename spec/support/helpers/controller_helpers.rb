@@ -16,7 +16,7 @@ module Helpers
     end
 
     def response_json
-      @response_json ||= JSON.parse(response.body, symbolize_names: true)
+      @response_json ||= JSON.parse(response.body)
     end
   end
 end
