@@ -44,6 +44,23 @@ export default {
     });
   },
   methods: {
+    onlyNumbers() {
+      return Number.isFinite(Number(this.phone)) && this.notEmpty();
+    },
+    notEmpty() {
+      return this.phone.length > 0;
+    },
+    frontEndValidation() {
+      this.errors = [];
+
+      if (!this.notEmpty()) {
+        this.errors.push("Can't be blank");
+      }
+      if (!this.onlyNumbers()) {
+        this.errors.push('Is not a number');
+      }
+      return this.onlyNumbers() && this.notEmpty();
+    },
     validatePhone() {
       this.$api.clients
         .post({ phone: this.phone })
@@ -60,8 +77,10 @@ export default {
       this.$emit('blur', this.phone);
     },
     handlePhone() {
-      this.validatePhone();
-      this.passPhoneToDashboard();
+      if (this.frontEndValidation()) {
+        this.validatePhone();
+        this.passPhoneToDashboard();
+      }
     },
   },
 };

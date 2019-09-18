@@ -47,6 +47,23 @@ export default {
     });
   },
   methods: {
+    isValidLength() {
+      return this.fullname.length > 4;
+    },
+    notEmpty() {
+      return this.fullname.length > 0;
+    },
+    frontEndValidation() {
+      this.errors = [];
+
+      if (!this.notEmpty()) {
+        this.errors.push("Can't be blank");
+      }
+      if (!this.isValidLength()) {
+        this.errors.push('Is too short (minimum is 5 characters)');
+      }
+      return this.isValidLength() && this.notEmpty();
+    },
     validateFullname() {
       this.$api.clients
         .post({ fullname: this.fullname })
@@ -63,8 +80,10 @@ export default {
       this.$emit('blur', this.fullname);
     },
     handleFullname() {
-      this.validateFullname();
-      this.passFullnameToDashboard();
+      if (this.frontEndValidation()) {
+        this.validateFullname();
+        this.passFullnameToDashboard();
+      }
     },
   },
 };

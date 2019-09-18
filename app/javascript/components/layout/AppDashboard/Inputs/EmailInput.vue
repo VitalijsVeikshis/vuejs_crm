@@ -16,6 +16,8 @@
 import FormError from './FormError.vue';
 import EventBus from '../event-bus';
 
+const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
 export default {
   components: {
     FormError,
@@ -43,6 +45,27 @@ export default {
     });
   },
   methods: {
+    isValidEmail() {
+      const truth = emailRegex.test(this.email);
+
+      return truth;
+    },
+    notEmpty() {
+      const truth = (this.email.length > 0);
+
+      return truth;
+    },
+    frontEndValidation() {
+      this.errors = [];
+
+      if (!this.notEmpty()) {
+        this.errors.push("Can't be blank");
+      }
+      if (!this.isValidEmail()) {
+        this.errors.push('Is invalid');
+      }
+      return this.isValidEmail() && this.notEmpty();
+    },
     validateEmail() {
       this.$api.clients
         .post({ email: this.email })
@@ -59,8 +82,10 @@ export default {
       this.$emit('blur', this.email);
     },
     handleEmail() {
-      this.validateEmail();
-      this.passEmailToDashboard();
+      if (this.frontEndValidation()) {
+        this.validateEmail();
+        this.passEmailToDashboard();
+      }
     },
   },
 };
