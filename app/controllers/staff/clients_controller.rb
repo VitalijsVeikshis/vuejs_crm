@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Staff::ClientsController < ApplicationController
+  before_action :authenticate_staff!
+
   def index
     render json: Client.order(created_at: :desc).as_json
   end
