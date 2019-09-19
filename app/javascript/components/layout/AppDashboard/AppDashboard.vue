@@ -13,7 +13,7 @@ import fullnameInput from './Inputs/FullnameInput.vue';
 import phoneInput from './Inputs/PhoneInput.vue';
 import emailInput from './Inputs/EmailInput.vue';
 import tableClients from './Outputs/TableClients.vue';
-import EventBus from './event-bus';
+import eventBus from './EventBus';
 
 export default {
   components: {
@@ -58,7 +58,7 @@ export default {
       this.phone = value;
     },
     handleCreateClient() {
-      EventBus.$emit('createClient');
+      eventBus.$emit('createClient');
     },
   },
 };

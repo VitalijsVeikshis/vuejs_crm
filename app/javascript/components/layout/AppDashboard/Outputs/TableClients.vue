@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import eventBus from '../event-bus';
+import eventBus from '../EventBus';
 import rowClient from './RowClient.vue';
 
 export default {

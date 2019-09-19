@@ -14,7 +14,7 @@
 
 <script>
 import FormError from './FormError.vue';
-import EventBus from '../event-bus';
+import eventBus from '../EventBus';
 
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -40,7 +40,7 @@ export default {
     },
   },
   mounted() {
-    EventBus.$on('createClient', () => {
+    eventBus.$on('createClient', () => {
       this.email = '';
     });
   },

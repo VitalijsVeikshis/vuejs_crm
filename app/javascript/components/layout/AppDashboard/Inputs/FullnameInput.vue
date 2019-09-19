@@ -15,7 +15,7 @@
 
 <script>
 import FormError from './FormError.vue';
-import EventBus from '../event-bus';
+import eventBus from '../EventBus';
 
 export default {
   components: {
@@ -42,7 +42,7 @@ export default {
     },
   },
   mounted() {
-    EventBus.$on('createClient', () => {
+    eventBus.$on('createClient', () => {
       this.fullname = '';
     });
   },
