@@ -7,19 +7,19 @@
       v-on:blur='handleFullname'
       placeholder='Minimum 5 characters'
     )#fullname.form-control
-    form-error(
+    formError(
       v-if="errors" :errors="errors"
       v-for="(error, index) in errors" :key="index"
     ) {{ error | capitalize }}
 </template>
 
 <script>
-import FormError from './FormError.vue';
+import formError from './FormError.vue';
 import eventBus from '../EventBus';
 
 export default {
   components: {
-    FormError,
+    formError,
   },
   props: {
     inputErrors: {

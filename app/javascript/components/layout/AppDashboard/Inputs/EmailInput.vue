@@ -6,21 +6,21 @@
       v-bind:class="errors && errors.length > 0 ? 'is-invalid' : ''"
       v-on:blur='handleEmail'
     )#email.form-control
-    form-error(
+    formError(
       v-if="errors" :errors="errors"
       v-for="(error, index) in errors" :key="index"
     ) {{ error | capitalize }}
 </template>
 
 <script>
-import FormError from './FormError.vue';
+import formError from './FormError.vue';
 import eventBus from '../EventBus';
 
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 export default {
   components: {
-    FormError,
+    formError,
   },
   props: {
     inputErrors: {
