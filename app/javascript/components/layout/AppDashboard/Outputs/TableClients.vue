@@ -33,7 +33,7 @@ export default {
         .get_index()
         .then(
           (response) => {
-            this.clients = response.data;
+            this.clients = response.data.data;
           },
         );
     },

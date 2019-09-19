@@ -7,7 +7,7 @@ RSpec.describe Staff::ClientsController, type: :controller do
     context 'with valid attributes' do
       let(:staff) { create(:staff) }
       let(:options) { { client: attributes_for(:client) } }
-      let(:request_params) { { method: :post, action: :create, options: options } }
+      let(:request_params) { { method: :post, action: :create, options: options, format: :json } }
 
       before { sign_in_as(staff) }
 
@@ -20,7 +20,9 @@ RSpec.describe Staff::ClientsController, type: :controller do
       it 'returns created client as json' do
         do_request(request_params)
 
-        expect(response_json).to eq Client.first.as_json
+        client_json = ClientSerializer.new(Client.last).serialized_json
+
+        expect(response_json.to_json).to eq client_json
       end
 
       it 'renders json with status :created' do
@@ -33,7 +35,7 @@ RSpec.describe Staff::ClientsController, type: :controller do
     context 'with invalid attributes' do
       let(:staff) { create(:staff) }
       let(:options) { { client: attributes_for(:client, :invalid) } }
-      let(:request_params) { { method: :post, action: :create, options: options } }
+      let(:request_params) { { method: :post, action: :create, options: options, format: :json } }
 
       before { sign_in_as(staff) }
 
@@ -59,17 +61,17 @@ RSpec.describe Staff::ClientsController, type: :controller do
 
   describe 'GET #index' do
     let(:staff) { create(:staff) }
-    let!(:clients) { create_list(:client, 3) }
-    let(:request_params) { { method: :get, action: :index } }
+    let(:clients) { create_list(:client, 3) }
+    let(:request_params) { { method: :get, action: :index, format: :json } }
 
     before { sign_in_as(staff) }
 
     it 'returns clients list' do
       do_request(request_params)
 
-      clients.each do |client|
-        expect(response_json).to include client.as_json(only: %i[id fullname phone email])
-      end
+      clients_json = ClientSerializer.new(Client.all).serialized_json
+
+      expect(response_json.to_json).to eq clients_json
     end
   end
 end

@@ -1,8 +1,8 @@
 <template lang='pug'>
   tr
-    td {{client.fullname}}
-    td {{client.phone}}
-    td {{client.email}}
+    td {{client.attributes.fullname}}
+    td {{client.attributes.phone}}
+    td {{client.attributes.email}}
 </template>
 
 <script>
