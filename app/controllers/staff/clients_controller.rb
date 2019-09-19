@@ -4,7 +4,7 @@ class Staff::ClientsController < ApplicationController
   before_action :authenticate_staff!
 
   def index
-    render json: Client.order(created_at: :desc).as_json
+    render json: clients_json
   end
 
   def create
@@ -25,5 +25,9 @@ class Staff::ClientsController < ApplicationController
 
   def render_errors_json
     render json: @client.errors, status: :unprocessable_entity
+  end
+
+  def clients_json
+    Client.order(created_at: :desc).as_json(only: %i[id fullname phone email])
   end
 end

@@ -68,7 +68,7 @@ RSpec.describe Staff::ClientsController, type: :controller do
       do_request(request_params)
 
       clients.each do |client|
-        expect(response_json).to include client.as_json
+        expect(response_json).to include client.as_json(only: %i[id fullname phone email])
       end
     end
   end
