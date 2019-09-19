@@ -46,14 +46,10 @@ export default {
   },
   methods: {
     isValidEmail() {
-      const truth = emailRegex.test(this.email);
-
-      return truth;
+      return emailRegex.test(this.email);
     },
     notEmpty() {
-      const truth = (this.email.length > 0);
-
-      return truth;
+      return this.email.length > 0;
     },
     frontEndValidation() {
       this.errors = [];

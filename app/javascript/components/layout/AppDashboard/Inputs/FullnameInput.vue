@@ -37,9 +37,6 @@ export default {
     inputErrors() {
       this.errors = this.inputErrors;
     },
-    submited() {
-      if (this.submited === true) this.fullname = '';
-    },
   },
   mounted() {
     eventBus.$on('createClient', () => {
