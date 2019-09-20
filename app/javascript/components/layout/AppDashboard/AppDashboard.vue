@@ -24,21 +24,17 @@ export default {
   },
   data() {
     return {
-      fullname: '',
-      phone: '',
-      email: '',
+      user: {},
       errors: [],
     };
   },
   methods: {
     createClient() {
       this.$api.clients
-        .post({ fullname: this.fullname, phone: this.phone, email: this.email })
+        .post({ fullname: this.user.fullname, phone: this.user.phone, email: this.user.email })
         .then(
           () => {
-            this.fullname = '';
-            this.phone = '';
-            this.email = '';
+            this.user = {};
             this.errors = [];
             this.handleCreateClient();
           },
@@ -49,13 +45,13 @@ export default {
       this.submitted = false;
     },
     setEmail(value) {
-      this.email = value;
+      this.user.email = value;
     },
     setFullname(value) {
-      this.fullname = value;
+      this.user.fullname = value;
     },
     setPhone(value) {
-      this.phone = value;
+      this.user.phone = value;
     },
     handleCreateClient() {
       eventBus.$emit('createClient');
