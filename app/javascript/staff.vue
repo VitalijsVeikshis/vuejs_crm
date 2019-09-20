@@ -1,11 +1,26 @@
-<template>
-  <div id="staff">
-    <p>{{ message }}</p>
-  </div>
+<template lang='pug'>
+  #staff
+    app-navbar(v-bind:userEmail="userEmail")
+    .main
+      p {{ message }}
+      AppDashboard
 </template>
 
 <script>
+import AppNavbar from './components/layout/AppNavbar/AppNavbar.vue';
+import AppDashboard from './components/layout/AppDashboard/AppDashboard.vue';
+
 export default {
+  components: {
+    AppNavbar,
+    AppDashboard,
+  },
+  props: {
+    userEmail: {
+      type: String,
+      default: '',
+    },
+  },
   data() {
     return {
       message: 'Hello Staff!',
@@ -14,9 +29,12 @@ export default {
 };
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 p {
   font-size: 2em;
   text-align: center;
+}
+.main {
+  margin-top: 60px;
 }
 </style>

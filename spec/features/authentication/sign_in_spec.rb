@@ -17,7 +17,7 @@ feature 'User can sign in', %(
       fill_in 'Password', with: staff.password
       click_on 'Log in'
 
-      expect(page).to have_content 'Signed in successfully.'
+      # expect(page).to have_content 'Signed in successfully.'
       expect(page).to have_content 'Hello Staff!'
     end
 
@@ -28,7 +28,7 @@ feature 'User can sign in', %(
       fill_in 'Password', with: client.password
       click_on 'Log in'
 
-      expect(page).to have_content 'Signed in successfully.'
+      # expect(page).to have_content 'Signed in successfully.'
       expect(page).to have_content 'Hello Client!'
     end
   end
@@ -41,7 +41,7 @@ feature 'User can sign in', %(
       fill_in 'Password', with: '123456'
       click_on 'Log in'
 
-      expect(page).to have_content 'Invalid Email or password.'
+      # expect(page).to have_content 'Invalid Email or password.'
       expect(page).to have_no_content 'Hello Staff!'
     end
 
