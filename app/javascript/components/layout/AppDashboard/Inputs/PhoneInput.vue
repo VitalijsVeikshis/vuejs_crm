@@ -63,7 +63,7 @@ export default {
     },
     validatePhone() {
       this.$api.clients
-        .post({ phone: this.phone })
+        .validate({ phone: this.phone })
         .then(
           () => {
             this.errors = [];

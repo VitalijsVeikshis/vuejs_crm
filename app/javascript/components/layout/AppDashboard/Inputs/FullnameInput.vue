@@ -63,7 +63,7 @@ export default {
     },
     validateFullname() {
       this.$api.clients
-        .post({ fullname: this.fullname })
+        .validate({ fullname: this.fullname })
         .then(
           () => {
             this.errors = [];

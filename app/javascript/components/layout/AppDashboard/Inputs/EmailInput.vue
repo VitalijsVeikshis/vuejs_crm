@@ -64,7 +64,7 @@ export default {
     },
     validateEmail() {
       this.$api.clients
-        .post({ email: this.email })
+        .validate({ email: this.email })
         .then(
           () => {
             this.errors = [];

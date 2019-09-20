@@ -14,7 +14,18 @@ class Staff::ClientsController < ApplicationController
     if @client.save
       render json: ClientSerializer.new(@client).serialized_json, status: :created
     else
-      render_errors_json
+      render json: errors_json, status: :unprocessable_entity
+    end
+  end
+
+  def validate
+    @client = Client.new(client_params)
+    @client.valid?
+
+    if errors_json.empty?
+      render json: client_params.as_json, status: :ok
+    else
+      render json: errors_json, status: :unprocessable_entity
     end
   end
 
@@ -24,7 +35,10 @@ class Staff::ClientsController < ApplicationController
     params.require(:client).permit(:fullname, :phone, :email)
   end
 
-  def render_errors_json
-    render json: @client.errors, status: :unprocessable_entity
+  def errors_json
+    @client
+      .errors
+      .as_json
+      .as_json(only: client_params.keys.map(&:to_sym))
   end
 end
