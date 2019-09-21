@@ -15,6 +15,8 @@ Rails.application.routes.draw do
         post :validate
       end
     end
+
+    get :current, to: 'staffs#current'
   end
 
   namespace :client do

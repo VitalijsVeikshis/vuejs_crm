@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import AppNavbar from '../shared/components/layout/AppNavbar/AppNavbar.vue';
+import AppNavbar from './components/layout/AppNavbar/AppNavbar.vue';
 import AppDashboard from './components/layout/AppDashboard/AppDashboard.vue';
 
 export default {
@@ -15,16 +15,25 @@ export default {
     AppNavbar,
     AppDashboard,
   },
-  props: {
-    userEmail: {
-      type: String,
-      default: '',
-    },
-  },
   data() {
     return {
       message: 'Hello Staff!',
+      userEmail: '',
     };
+  },
+  created() {
+    this.getCurrentStaff();
+  },
+  methods: {
+    getCurrentStaff() {
+      this.$api.staffs
+        .current()
+        .then(
+          (response) => {
+            this.userEmail = response.data.data.attributes.email;
+          },
+        );
+    },
   },
 };
 </script>

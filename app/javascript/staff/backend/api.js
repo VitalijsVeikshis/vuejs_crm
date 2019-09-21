@@ -17,6 +17,11 @@ const clients = {
   validate: (client) => adapter.post('/staff/clients/validate', { client }),
 };
 
+const staffs = {
+  current: () => adapter.get('/staff/current'),
+};
+
 export default {
   clients,
+  staffs,
 };
