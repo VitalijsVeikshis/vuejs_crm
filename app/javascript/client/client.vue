@@ -6,22 +6,31 @@
 </template>
 
 <script>
-import AppNavbar from '../shared/components/layout/AppNavbar/AppNavbar.vue';
+import AppNavbar from './components/layout/AppNavbar/AppNavbar.vue';
 
 export default {
   components: {
     AppNavbar,
   },
-  props: {
-    userEmail: {
-      type: String,
-      default: '',
-    },
-  },
   data() {
     return {
       message: 'Hello Client!',
+      userEmail: '',
     };
+  },
+  created() {
+    this.getCurrentStaff();
+  },
+  methods: {
+    getCurrentStaff() {
+      this.$api.clients
+        .current()
+        .then(
+          (response) => {
+            this.userEmail = response.data.data.attributes.email;
+          },
+        );
+    },
   },
 };
 </script>
