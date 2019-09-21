@@ -13,8 +13,8 @@
 </template>
 
 <script>
-import formError from './FormError.vue';
-import eventBus from '../EventBus';
+import formError from '../FormError.vue';
+import eventBus from '../../../../../utils/EventBus';
 
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 

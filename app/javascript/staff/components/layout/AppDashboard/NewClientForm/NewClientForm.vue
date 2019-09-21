@@ -1,26 +1,22 @@
 <template lang='pug'>
-  .container#dashboard
-    form(@submit.prevent='createClient')
-      fullnameInput(v-bind:inputErrors="errors.fullname" v-on:blur='setFullname')
-      phoneInput(v-bind:inputErrors="errors.phone" v-on:blur='setPhone')
-      emailInput(v-bind:inputErrors="errors.email" v-on:blur='setEmail')
-      button.btn.btn-primary Save
-    tableClients
+  form(@submit.prevent='createClient')#new-client
+    fullnameInput(v-bind:inputErrors="errors.fullname" v-on:blur='setFullname')
+    phoneInput(v-bind:inputErrors="errors.phone" v-on:blur='setPhone')
+    emailInput(v-bind:inputErrors="errors.email" v-on:blur='setEmail')
+    button.btn.btn-primary Save
 </template>
 
 <script>
-import fullnameInput from './Inputs/FullnameInput.vue';
-import phoneInput from './Inputs/PhoneInput.vue';
-import emailInput from './Inputs/EmailInput.vue';
-import tableClients from './Outputs/TableClients.vue';
-import eventBus from './EventBus';
+import fullnameInput from './FormInputs/FullnameInput.vue';
+import phoneInput from './FormInputs/PhoneInput.vue';
+import emailInput from './FormInputs/EmailInput.vue';
+import eventBus from '../../../../utils/EventBus';
 
 export default {
   components: {
     fullnameInput,
     phoneInput,
     emailInput,
-    tableClients,
   },
   data() {
     return {
