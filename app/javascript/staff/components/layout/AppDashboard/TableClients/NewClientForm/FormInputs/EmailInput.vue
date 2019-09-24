@@ -6,7 +6,7 @@
     v-model='email'
     dense
     color='secondary'
-    bottom-slots
+    :loading="loading"
     :error="!isValid"
     @blur='validateInputValue'
   )
@@ -87,8 +87,12 @@ export default {
           (errors) => {
             this.errors = errors.response.data.email;
           },
+        )
+        .finally(
+          () => {
+            this.loading = false;
+          },
         );
-      this.loading = false;
     },
     passEmailToDashboard() {
       this.$emit('blur', this.email);

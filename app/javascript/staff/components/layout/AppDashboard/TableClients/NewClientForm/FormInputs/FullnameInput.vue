@@ -7,7 +7,7 @@
     v-model='fullname'
     dense
     color='secondary'
-    bottom-slots
+    :loading="loading"
     :error="!isValid"
     @blur='validateInputValue'
   )
@@ -84,8 +84,12 @@ export default {
           (errors) => {
             this.errors = errors.response.data.fullname;
           },
+        )
+        .finally(
+          () => {
+            this.loading = false;
+          },
         );
-      this.loading = false;
     },
     passFullnameToDashboard() {
       this.$emit('blur', this.fullname);

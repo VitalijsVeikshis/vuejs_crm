@@ -7,6 +7,7 @@
       @request="onRequest"
       :pagination.sync="pagination"
       :loading="loading"
+      loading-label='Loading clients...'
     ).full-width
       template(v-slot:top)
         newClientForm
@@ -50,8 +51,12 @@ export default {
           (response) => {
             this.parseResponseData(response.data.data);
           },
+        )
+        .finally(
+          () => {
+            this.loading = false;
+          },
         );
-      this.loading = false;
     },
     parseResponseData(responseData) {
       this.data = [];

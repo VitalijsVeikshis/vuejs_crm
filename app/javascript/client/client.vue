@@ -26,11 +26,17 @@ export default {
   },
   methods: {
     getCurrentClient() {
+      this.$q.loading.show();
       this.$api.clients
         .current()
         .then(
           (response) => {
             this.userEmail = response.data.data.attributes.email;
+          },
+        )
+        .finally(
+          () => {
+            this.$q.loading.hide();
           },
         );
     },

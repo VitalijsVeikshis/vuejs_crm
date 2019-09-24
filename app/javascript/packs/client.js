@@ -26,6 +26,9 @@ import {
   QForm,
   QInput,
   QCard,
+  QSpinner,
+  QSpinnerTail,
+  Loading,
 } from 'quasar';
 
 import '../shared/utils/filters';
@@ -35,7 +38,11 @@ import Client from '../client/client.vue';
 require('../client/channels');
 
 Vue.use(Quasar, {
-  config: {},
+  config: {
+    loading: {
+      spinner: QSpinnerTail,
+    },
+  },
   components: {
     Quasar,
     QLayout,
@@ -56,11 +63,14 @@ Vue.use(Quasar, {
     QForm,
     QInput,
     QCard,
+    QSpinner,
+    QSpinnerTail,
   },
   directives: {
   },
   iconSet,
   plugins: {
+    Loading,
   },
 });
 

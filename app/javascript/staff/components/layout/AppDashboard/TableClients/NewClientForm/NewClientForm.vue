@@ -50,6 +50,7 @@ export default {
   },
   methods: {
     createClient() {
+      this.$q.loading.show();
       this.$api.clients
         .post({ fullname: this.user.fullname, phone: this.user.phone, email: this.user.email })
         .then(
@@ -61,8 +62,12 @@ export default {
           (errors) => {
             this.errors = errors.response.data;
           },
+        )
+        .finally(
+          () => {
+            this.$q.loading.hide();
+          },
         );
-      this.submitted = false;
     },
     setEmail(value) {
       this.user.email = value;
@@ -81,15 +86,4 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.btn-primary {
-  background-color: #41b883;
-  border-color: #41b883;
-}
-.btn-primary:hover {
-  background-color: #3aa575;
-  border-color: #3aa575;
-}
-label {
-  color: #34495e;
-}
 </style>

@@ -19,6 +19,7 @@ export default {
   },
   methods: {
     createClient() {
+      this.$q.loading.show();
       this.$api.clients
         .post({ fullname: this.user.fullname, phone: this.user.phone, email: this.user.email })
         .then(
@@ -29,6 +30,11 @@ export default {
           },
           (errors) => {
             this.errors = errors.response.data;
+          },
+        )
+        .finally(
+          () => {
+            this.$q.loading.hide();
           },
         );
       this.submitted = false;

@@ -22,6 +22,7 @@ export default {
     return {
       message: 'Hello Staff!',
       userEmail: '',
+      timer: 0,
     };
   },
   created() {
@@ -29,11 +30,17 @@ export default {
   },
   methods: {
     getCurrentStaff() {
+      this.$q.loading.show();
       this.$api.staffs
         .current()
         .then(
           (response) => {
             this.userEmail = response.data.data.attributes.email;
+          },
+        )
+        .finally(
+          () => {
+            this.$q.loading.hide();
           },
         );
     },
