@@ -1,5 +1,5 @@
 <template lang='pug'>
-  a(href="/clients/sign_out") Log out
+  q-btn(stretch flat label='Log out' type='a' href='/clients/sign_out')
 </template>
 
 <script>
@@ -12,14 +12,3 @@ export default {
   },
 };
 </script>
-
-<style scoped lang="scss">
-a {
-  color: #304455;
-  font-family: "Helvetica Neue", Arial, sans-serif;
-  cursor: pointer;
-  padding-bottom: 3px;
-  white-space: nowrap;
-  text-decoration: none;
-}
-</style>

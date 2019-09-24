@@ -1,16 +1,36 @@
 <template lang='pug'>
-  form(@submit.prevent='createClient')#new-client
-    fullnameInput(v-bind:inputErrors="errors.fullname" v-on:blur='setFullname')
-    phoneInput(v-bind:inputErrors="errors.phone" v-on:blur='setPhone')
-    emailInput(v-bind:inputErrors="errors.email" v-on:blur='setEmail')
-    button.btn.btn-primary Save
+  q-form(@submit.prevent='createClient').full-width
+    .row.justify-center.q-gutter-x-md
+      .col
+        fullnameInput(
+          v-bind:inputErrors="errors.fullname"
+          v-model='user.fullname'
+          @blur='setFullname'
+        )
+      .col
+        phoneInput(
+          v-bind:inputErrors="errors.phone"
+          v-model='user.phone'
+          @blur='setPhone'
+        )
+      .col
+        emailInput(
+          v-bind:inputErrors="errors.email"
+          v-model='user.email'
+          @blur='setEmail'
+        )
+      .col-1
+        q-btn(
+          label="Add"
+          type="submit"
+        )
 </template>
 
 <script>
 import fullnameInput from './FormInputs/FullnameInput.vue';
 import phoneInput from './FormInputs/PhoneInput.vue';
 import emailInput from './FormInputs/EmailInput.vue';
-import eventBus from '../../../../utils/EventBus';
+import eventBus from '../../../../../utils/EventBus';
 
 export default {
   components: {
@@ -20,7 +40,11 @@ export default {
   },
   data() {
     return {
-      user: {},
+      user: {
+        fullname: '',
+        phone: '',
+        email: '',
+      },
       errors: [],
     };
   },

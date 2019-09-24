@@ -1,17 +1,14 @@
 <template lang='pug'>
-  .container#dashboard
-    newClientForm
+  #dashboard
     tableClients
 </template>
 
 <script>
-import newClientForm from './NewClientForm/NewClientForm.vue';
-import tableClients from './ClientsList/TableClients.vue';
+import tableClients from './TableClients/TableClients.vue';
 import eventBus from '../../../utils/EventBus';
 
 export default {
   components: {
-    newClientForm,
     tableClients,
   },
   data() {

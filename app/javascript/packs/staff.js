@@ -1,7 +1,5 @@
 import Vue from 'vue';
 
-import 'bootstrap/dist/css/bootstrap.min.css';
-
 import iconSet from 'quasar/icon-set/fontawesome-v5';
 import '@quasar/extras/fontawesome-v5/fontawesome-v5.css';
 
@@ -15,6 +13,19 @@ import {
   QDrawer,
   QPageContainer,
   QPage,
+  QToolbar,
+  QToolbarTitle,
+  QAvatar,
+  QSpace,
+  QBtn,
+  QChip,
+  QTable,
+  QTh,
+  QTr,
+  QTd,
+  QForm,
+  QInput,
+  QCard,
 } from 'quasar';
 
 import '../shared/utils/filters';
@@ -31,10 +42,23 @@ Vue.use(Quasar, {
     QDrawer,
     QPageContainer,
     QPage,
+    QToolbar,
+    QToolbarTitle,
+    QAvatar,
+    QSpace,
+    QBtn,
+    QChip,
+    QTable,
+    QTh,
+    QTr,
+    QTd,
+    QForm,
+    QInput,
+    QCard,
   },
   directives: {
   },
-  iconSet: iconSet,
+  iconSet,
   plugins: {
   },
 });

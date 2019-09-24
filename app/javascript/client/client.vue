@@ -1,8 +1,11 @@
 <template lang='pug'>
   #client
-    app-navbar(v-bind:userEmail="userEmail")
-    .main
-      p {{ message }}
+    q-layout(view="hHh lpR fFf")
+      q-header(elevated)
+        app-navbar(v-bind:userEmail="userEmail")
+      q-page-container
+        q-page.doc-page
+          p {{ message }}
 </template>
 
 <script>
@@ -19,10 +22,10 @@ export default {
     };
   },
   created() {
-    this.getCurrentStaff();
+    this.getCurrentClient();
   },
   methods: {
-    getCurrentStaff() {
+    getCurrentClient() {
       this.$api.clients
         .current()
         .then(
@@ -36,11 +39,15 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.doc-page {
+  padding: 16px 46px;
+  font-weight: 300;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
 p {
   font-size: 2em;
   text-align: center;
-}
-.main {
-  margin-top: 60px;
 }
 </style>

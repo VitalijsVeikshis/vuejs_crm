@@ -20,7 +20,6 @@ const clients = {
 const staffs = {
   current: () => adapter.get('/staff/current'),
 };
-
 export default {
   clients,
   staffs,
