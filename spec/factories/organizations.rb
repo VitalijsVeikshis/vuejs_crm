@@ -12,4 +12,11 @@ FactoryBot.define do
     form_of_ownership { :ip }
     sequence(:inn) { |n| (1_000_000_000_00 + n).to_s }
   end
+
+  trait :invalid do
+    name { nil }
+    form_of_ownership { nil }
+    inn { nil }
+    ogrn { nil }
+  end
 end

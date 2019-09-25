@@ -16,6 +16,12 @@ Rails.application.routes.draw do
       end
     end
 
+    resources :organizations, only: %i[index create destroy], shallow: true do
+      collection do
+        post :validate
+      end
+    end
+
     get :current, to: 'staffs#current'
   end
 
