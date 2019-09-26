@@ -10,16 +10,16 @@
       loading-label='Loading clients...'
     ).full-width
       template(v-slot:top)
-        newClientForm
+        formNewClient
 </template>
 
 <script>
-import newClientForm from './NewClientForm/NewClientForm.vue';
+import formNewClient from '../AppForms/NewClient/FormNewClient.vue';
 import eventBus from '../../../../utils/EventBus';
 
 export default {
   components: {
-    newClientForm,
+    formNewClient,
   },
   data() {
     return {
