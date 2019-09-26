@@ -1,15 +1,18 @@
 <template lang='pug'>
   #dashboard.q-gutter-md
     formNewOrganization
+    tableOrganizations
 </template>
 
 <script>
 import formNewOrganization from './AppForms/NewOrganization/FormNewOrganization.vue';
+import tableOrganizations from './AppTables/TableOrganizations.vue';
 import eventBus from '../../../utils/EventBus';
 
 export default {
   components: {
     formNewOrganization,
+    tableOrganizations,
   },
   data() {
     return {
