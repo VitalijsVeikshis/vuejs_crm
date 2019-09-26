@@ -1,11 +1,11 @@
 <template lang='pug'>
-  q-toolbar(row no-wrap items-center).bg-primary.text-secondary
+  q-toolbar(row no-wrap items-center).bg-secondary
     q-btn(stretch flat no-caps type="a" href="/")
       q-avatar(square)
         img(v-bind:src="brandLogo")
       q-toolbar-title Vue.js CRM
     q-space
-    q-chip(square color='primary') {{ userEmail }}
+    q-chip(square color='secondary' text-color='white') {{ userEmail }}
     logOutLink
 </template>
 
