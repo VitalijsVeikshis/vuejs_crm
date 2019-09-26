@@ -14,10 +14,8 @@
 </template>
 
 <script>
-// import { format } from 'quasar';
 import eventBus from '../../../../../../utils/EventBus';
 
-// const { capitalize } = format;
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 export default {
