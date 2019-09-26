@@ -1,15 +1,15 @@
 <template lang='pug'>
-  #dashboard
-    tableClients
+  #dashboard.q-gutter-md
+    formNewOrganization
 </template>
 
 <script>
-import tableClients from './TableClients/TableClients.vue';
+import formNewOrganization from './AppForms/NewOrganization/FormNewOrganization.vue';
 import eventBus from '../../../utils/EventBus';
 
 export default {
   components: {
-    tableClients,
+    formNewOrganization,
   },
   data() {
     return {
@@ -54,17 +54,3 @@ export default {
   },
 };
 </script>
-
-<style scoped lang="scss">
-.btn-primary {
-  background-color: #41b883;
-  border-color: #41b883;
-}
-.btn-primary:hover {
-  background-color: #3aa575;
-  border-color: #3aa575;
-}
-label {
-  color: #34495e;
-}
-</style>

@@ -29,6 +29,11 @@ import {
   QSpinner,
   QSpinnerTail,
   Loading,
+  QSelect,
+  QList,
+  QItem,
+  QItemSection,
+  QItemLabel,
 } from 'quasar';
 
 import '../shared/utils/filters';
@@ -64,6 +69,11 @@ Vue.use(Quasar, {
     QCard,
     QSpinner,
     QSpinnerTail,
+    QSelect,
+    QList,
+    QItem,
+    QItemSection,
+    QItemLabel,
   },
   directives: {
   },

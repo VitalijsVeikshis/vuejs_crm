@@ -20,7 +20,16 @@ const clients = {
 const staffs = {
   current: () => adapter.get('/staff/current'),
 };
+
+const organizations = {
+  create: (organization) => adapter.post('/staff/organizations', { organization }),
+  index: () => adapter.get('/staff/organizations'),
+  destroy: (id) => adapter.delete(`/staff/organizations/${id}`),
+  validate: (organization) => adapter.post('/staff/organizations/validate', { organization }),
+};
+
 export default {
   clients,
   staffs,
+  organizations,
 };
