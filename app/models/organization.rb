@@ -4,13 +4,7 @@ class Organization < ApplicationRecord
     INN_10: 'Please use 10 characters'
   }.freeze
 
-  enum form_of_ownership: {
-    ip: 'ИП',
-    ooo: 'ООО',
-    kfh: 'КФХ',
-    ao: 'АО',
-    pao: 'ПАО'
-  }
+  enum form_of_ownership: %w[ИП ООО КФХ АО ПАО ЗАО]
 
   validates :name, presence: true,
                    uniqueness: { case_sensitive: false }
@@ -27,7 +21,7 @@ class Organization < ApplicationRecord
   private
 
   def validate_inn_length
-    errors.add(:inn, ERROR_MESSAGES[:INN_12]) if ip? && inn&.length != 12
-    errors.add(:inn, ERROR_MESSAGES[:INN_10]) if !ip? && inn&.length != 10
+    errors.add(:inn, ERROR_MESSAGES[:INN_12]) if form_of_ownership == 'ИП' && inn&.length != 12
+    errors.add(:inn, ERROR_MESSAGES[:INN_10]) if form_of_ownership != 'ИП' && inn&.length != 10
   end
 end

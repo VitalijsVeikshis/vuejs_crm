@@ -24,14 +24,6 @@
 <script>
 import eventBus from '../../../../utils/EventBus';
 
-const formOfOwnershipHash = {
-  ip: 'ИП',
-  ooo: 'ООО',
-  kfh: 'КФХ',
-  ao: 'АО',
-  pao: 'ПАО',
-};
-
 export default {
   data() {
     return {
@@ -113,7 +105,7 @@ export default {
           this.data.push({
             id: record.attributes.id,
             name: record.attributes.name,
-            formOfOwnership: formOfOwnershipHash[record.attributes.form_of_ownership],
+            formOfOwnership: record.attributes.form_of_ownership,
             inn: record.attributes.inn,
             ogrn: record.attributes.ogrn,
           });

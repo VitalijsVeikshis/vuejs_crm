@@ -1,7 +1,6 @@
 <template lang='pug'>
   #ogrn
     q-input(
-      ref='ogrn'
       type='text'
       label='ОГРН'
       v-model='ogrn'
@@ -23,6 +22,10 @@ export default {
       type: Array,
       default: () => [],
     },
+    value: {
+      type: String,
+      default: '',
+    },
   },
   data() {
     return {
@@ -39,6 +42,9 @@ export default {
   watch: {
     inputErrors() {
       this.errors = this.inputErrors;
+    },
+    value() {
+      this.ogrn = this.value;
     },
   },
   mounted() {

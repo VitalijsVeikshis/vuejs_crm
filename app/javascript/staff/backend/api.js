@@ -26,6 +26,7 @@ const organizations = {
   index: () => adapter.get('/staff/organizations'),
   destroy: (id) => adapter.delete(`/staff/organizations/${id}`),
   validate: (organization) => adapter.post('/staff/organizations/validate', { organization }),
+  suggestions: (organization) => adapter.post('/staff/organizations/suggestions', { organization }),
 };
 
 export default {

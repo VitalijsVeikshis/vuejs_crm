@@ -1,7 +1,6 @@
 <template lang='pug'>
   #formOfOwnershipInput
     q-select(
-      ref='formOfOwnership'
       label='Форма собственности'
       v-model='formOfOwnership'
       :options="options"
@@ -17,13 +16,7 @@
 <script>
 import eventBus from '../../../../../../utils/EventBus';
 
-const formOfOwnershipOptions = [
-  { label: 'ИП', value: 'ip' },
-  { label: 'ООО', value: 'ooo' },
-  { label: 'КФХ', value: 'kfh' },
-  { label: 'АО', value: 'ao' },
-  { label: 'ПАО', value: 'pao' },
-];
+const formOfOwnershipOptions = ['ИП', 'ООО', 'КФХ', 'АО', 'ПАО', 'ЗАО'];
 
 export default {
   props: {
@@ -31,11 +24,15 @@ export default {
       type: Array,
       default: () => [],
     },
+    value: {
+      type: String,
+      default: '',
+    },
   },
   data() {
     return {
       loading: false,
-      formOfOwnership: { value: '' },
+      formOfOwnership: '',
       errors: [],
       formOfOwnershipOptions,
       options: formOfOwnershipOptions,
@@ -49,6 +46,9 @@ export default {
   watch: {
     inputErrors() {
       this.errors = this.inputErrors;
+    },
+    value() {
+      this.formOfOwnership = this.value;
     },
   },
   mounted() {
@@ -74,12 +74,12 @@ export default {
       return this.notEmpty();
     },
     notEmpty() {
-      return this.formOfOwnership.value.length !== 0;
+      return this.formOfOwnership.length !== 0;
     },
     serverValidation() {
       this.loading = true;
       this.$api.organizations
-        .validate({ form_of_ownership: this.formOfOwnership.value })
+        .validate({ form_of_ownership: this.formOfOwnership })
         .then(
           () => {},
           (errors) => {
@@ -93,14 +93,8 @@ export default {
         );
     },
     passFormOfOwnershipToNewOrganization() {
-      this.$emit('blur', this.formOfOwnership.value);
+      this.$emit('blur', this.formOfOwnership);
     },
   },
 };
 </script>
-
-<style scoped lang="scss">
-label {
-  color: #34495e;
-}
-</style>

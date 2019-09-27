@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Staff::OrganizationsController < ApplicationController
-  before_action :authenticate_staff!
+  # before_action :authenticate_staff!
   before_action :set_organization, only: %i[destroy]
 
   def index
@@ -35,6 +35,10 @@ class Staff::OrganizationsController < ApplicationController
     else
       render json: errors_json, status: :unprocessable_entity
     end
+  end
+
+  def suggestions
+    render json: SuggestionsDadata.call(query: organization_params.values.first).suggestions
   end
 
   private

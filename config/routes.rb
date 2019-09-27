@@ -19,6 +19,7 @@ Rails.application.routes.draw do
     resources :organizations, only: %i[index create destroy], shallow: true do
       collection do
         post :validate
+        post :suggestions
       end
     end
 

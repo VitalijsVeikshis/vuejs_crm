@@ -36,7 +36,7 @@ ActiveRecord::Schema.define(version: 2019_09_24_143723) do
 
   create_table "organizations", force: :cascade do |t|
     t.string "name", null: false
-    t.string "form_of_ownership", null: false
+    t.integer "form_of_ownership", null: false
     t.string "inn", null: false
     t.string "ogrn", null: false
     t.datetime "created_at", precision: 6, null: false

@@ -1,7 +1,6 @@
 <template lang='pug'>
   #inn
     q-input(
-      ref='inn'
       type='text'
       label='ИНН'
       v-model='inn'
@@ -27,6 +26,10 @@ export default {
       type: String,
       default: '',
     },
+    value: {
+      type: String,
+      default: '',
+    },
   },
   data() {
     return {
@@ -43,6 +46,9 @@ export default {
   watch: {
     inputErrors() {
       this.errors = this.inputErrors;
+    },
+    value() {
+      this.inn = this.value;
     },
   },
   mounted() {
@@ -91,8 +97,12 @@ export default {
     },
     serverValidation() {
       this.loading = true;
+      const organizationParams = { inn: this.inn };
+      if (this.formOfOwnership) {
+        Object.assign(organizationParams, { form_of_ownership: this.formOfOwnership });
+      }
       this.$api.organizations
-        .validate({ form_of_ownership: this.formOfOwnership, inn: this.inn })
+        .validate(organizationParams)
         .then(
           () => {},
           (errors) => {
@@ -111,9 +121,3 @@ export default {
   },
 };
 </script>
-
-<style scoped lang="scss">
-label {
-  color: #34495e;
-}
-</style>

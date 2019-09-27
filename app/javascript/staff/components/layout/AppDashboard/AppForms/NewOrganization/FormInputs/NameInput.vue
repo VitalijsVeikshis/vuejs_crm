@@ -1,17 +1,28 @@
 <template lang='pug'>
   #name
-    q-input(
-      ref='name'
-      type='text'
+    q-select(
       label='Название'
       v-model='name'
       dense
       color='secondary'
-      :loading="loading"
+      use-input
+      hide-selected
+      fill-input
+      hide-dropdown-icon
+      new-value-mode="add"
+      input-debounce="0"
+      :loading='loading'
       :error="!isValid"
+      :options="options"
       @blur='validateInputValue'
-      id='name3'
+      @filter="filterFn"
+      @popup-show='togglePopupShowing'
+      @popup-hide='togglePopupShowing'
+      v-bind:class='{pb490: popupShowing}'
     )
+      template(v-slot:option="scope")
+        q-item(v-bind="scope.itemProps" v-on="scope.itemEvents")
+          q-item-section(@mouseover='mouseoverSelected(scope.index)') {{scope.opt}}
       template(v-slot:error) {{errors[0] | capitalize}}
 </template>
 
@@ -24,12 +35,19 @@ export default {
       type: Array,
       default: () => [],
     },
+    value: {
+      type: String,
+      default: '',
+    },
   },
   data() {
     return {
       loading: false,
       name: '',
       errors: [],
+      options: [],
+      suggestions: [],
+      popupShowing: false,
     };
   },
   computed: {
@@ -41,6 +59,9 @@ export default {
     inputErrors() {
       this.errors = this.inputErrors;
     },
+    value() {
+      this.name = this.value;
+    },
   },
   mounted() {
     eventBus.$on('createOrganization', () => {
@@ -48,6 +69,41 @@ export default {
     });
   },
   methods: {
+    mouseoverSelected(index) {
+      eventBus.$emit('mouseoverSelected', this.suggestions[index]);
+    },
+    togglePopupShowing() {
+      this.popupShowing = !this.popupShowing;
+    },
+    fetchSuggestions(val) {
+      this.loading = true;
+      this.$api.organizations
+        .suggestions({ name: val })
+        .then(
+          (response) => {
+            this.suggestions = response.data;
+            this.options = response.data.map((suggestion) => suggestion.name);
+          },
+        )
+        .finally(
+          () => {
+            this.loading = false;
+          },
+        );
+    },
+    filterFn(val, update) {
+      setTimeout(
+        update(
+          () => {
+            if (val === '') {
+              this.options = [];
+            } else {
+              this.fetchSuggestions(val);
+            }
+          },
+        ), 1500,
+      );
+    },
     validateInputValue() {
       this.errors = [];
       if (this.frontEndValidation()) {
@@ -91,7 +147,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-label {
-  color: #34495e;
+.pb490 {
+  padding-bottom: 490px;
 }
 </style>

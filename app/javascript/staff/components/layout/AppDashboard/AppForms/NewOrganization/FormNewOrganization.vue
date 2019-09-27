@@ -4,6 +4,7 @@
       .col.q-gutter-md
         nameInput(
           v-bind:inputErrors="errors.name"
+          v-bind:organizationName="organization.name"
           v-model='organization.name'
           @blur='setName'
         )
@@ -55,6 +56,14 @@ export default {
       errors: [],
     };
   },
+  mounted() {
+    eventBus.$on('mouseoverSelected', (suggestion) => {
+      this.organization.name = suggestion.name;
+      this.organization.formOfOwnership = suggestion.form_of_ownership;
+      this.organization.inn = suggestion.inn;
+      this.organization.ogrn = suggestion.ogrn;
+    });
+  },
   methods: {
     createOrganization() {
       this.$q.loading.show();
@@ -101,6 +110,3 @@ export default {
   },
 };
 </script>
-
-<style scoped lang="scss">
-</style>
