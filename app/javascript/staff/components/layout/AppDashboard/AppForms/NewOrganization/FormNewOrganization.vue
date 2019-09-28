@@ -4,7 +4,6 @@
       .col.q-gutter-md
         nameInput(
           v-bind:inputErrors="errors.name"
-          v-bind:organizationName="organization.name"
           v-model='organization.name'
           @blur='setName'
         )
@@ -38,6 +37,13 @@ import innInput from './FormInputs/InnInput.vue';
 import ogrnInput from './FormInputs/OgrnInput.vue';
 import eventBus from '../../../../../utils/EventBus';
 
+const emptyOrganization = {
+  name: '',
+  formOfOwnership: '',
+  inn: '',
+  ogrn: '',
+};
+
 export default {
   components: {
     nameInput,
@@ -47,16 +53,11 @@ export default {
   },
   data() {
     return {
-      organization: {
-        name: '',
-        formOfOwnership: '',
-        inn: '',
-        ogrn: '',
-      },
+      organization: emptyOrganization,
       errors: [],
     };
   },
-  mounted() {
+  created() {
     eventBus.$on('mouseoverSelected', (suggestion) => {
       this.organization.name = suggestion.name;
       this.organization.formOfOwnership = suggestion.form_of_ownership;
@@ -78,7 +79,7 @@ export default {
         )
         .then(
           () => {
-            this.organization = {};
+            this.organization = emptyOrganization;
             this.errors = [];
             this.handleCreateOrganization();
           },
