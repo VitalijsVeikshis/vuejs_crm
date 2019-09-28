@@ -83,6 +83,8 @@ export default {
           (response) => {
             this.suggestions = response.data;
             this.options = response.data.map((suggestion) => suggestion.name);
+            const emptyOptions = new Array(10 - this.options.length).fill('');
+            this.options = [...this.options, ...emptyOptions];
           },
         )
         .finally(
