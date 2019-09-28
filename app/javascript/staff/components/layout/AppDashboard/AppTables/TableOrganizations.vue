@@ -69,16 +69,12 @@ export default {
           (organization) => {
             this.$api.organizations
               .destroy(organization.id)
-              .then(
-                () => {
-                  this.onRequest();
-                },
-              )
-              .finally(
-                () => {
-                  this.$q.loading.hide();
-                },
-              );
+              .then(() => {
+                this.onRequest();
+              })
+              .finally(() => {
+                this.$q.loading.hide();
+              });
           },
         );
       }

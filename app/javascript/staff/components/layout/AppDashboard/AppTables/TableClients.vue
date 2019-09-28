@@ -47,16 +47,12 @@ export default {
       this.loading = true;
       this.$api.clients
         .get_index()
-        .then(
-          (response) => {
-            this.parseResponseData(response.data.data);
-          },
-        )
-        .finally(
-          () => {
-            this.loading = false;
-          },
-        );
+        .then((response) => {
+          this.parseResponseData(response.data.data);
+        })
+        .finally(() => {
+          this.loading = false;
+        });
     },
     parseResponseData(responseData) {
       this.data = [];

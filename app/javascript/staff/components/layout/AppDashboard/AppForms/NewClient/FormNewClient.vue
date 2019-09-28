@@ -63,11 +63,9 @@ export default {
             this.errors = errors.response.data;
           },
         )
-        .finally(
-          () => {
-            this.$q.loading.hide();
-          },
-        );
+        .finally(() => {
+          this.$q.loading.hide();
+        });
     },
     setEmail(value) {
       this.user.email = value;

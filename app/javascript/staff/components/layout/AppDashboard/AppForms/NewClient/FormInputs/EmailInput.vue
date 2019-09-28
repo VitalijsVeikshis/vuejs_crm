@@ -86,11 +86,9 @@ export default {
             this.errors = errors.response.data.email;
           },
         )
-        .finally(
-          () => {
-            this.loading = false;
-          },
-        );
+        .finally(() => {
+          this.loading = false;
+        });
     },
     passEmailToDashboard() {
       this.$emit('blur', this.email);

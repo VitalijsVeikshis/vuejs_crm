@@ -85,11 +85,9 @@ export default {
             this.errors = errors.response.data.fullname;
           },
         )
-        .finally(
-          () => {
-            this.loading = false;
-          },
-        );
+        .finally(() => {
+          this.loading = false;
+        });
     },
     passFullnameToDashboard() {
       this.$emit('blur', this.fullname);

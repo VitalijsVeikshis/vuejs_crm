@@ -91,11 +91,9 @@ export default {
             this.errors = errors.response.data.ogrn;
           },
         )
-        .finally(
-          () => {
-            this.loading = false;
-          },
-        );
+        .finally(() => {
+          this.loading = false;
+        });
     },
     passOgrnToNewOrganization() {
       this.$emit('blur', this.ogrn);

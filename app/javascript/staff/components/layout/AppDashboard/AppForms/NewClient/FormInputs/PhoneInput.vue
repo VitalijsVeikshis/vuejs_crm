@@ -11,7 +11,7 @@
     :error="!isValid"
     @blur='validateInputValue'
   )
-    template(v-slot:error) {{errors[0]  | capitalize}}
+    template(v-slot:error) {{errors[0] | capitalize}}
 </template>
 
 <script>
@@ -85,11 +85,9 @@ export default {
             this.errors = errors.response.data.phone;
           },
         )
-        .finally(
-          () => {
-            this.loading = false;
-          },
-        );
+        .finally(() => {
+          this.loading = false;
+        });
     },
     passEmailToDashboard() {
       this.$emit('blur', this.phone);

@@ -109,11 +109,9 @@ export default {
             this.errors = errors.response.data.inn;
           },
         )
-        .finally(
-          () => {
-            this.loading = false;
-          },
-        );
+        .finally(() => {
+          this.loading = false;
+        });
     },
     passInnToNewOrganization() {
       this.$emit('blur', this.inn);

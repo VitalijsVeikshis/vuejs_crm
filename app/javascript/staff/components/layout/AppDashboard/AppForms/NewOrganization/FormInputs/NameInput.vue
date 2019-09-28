@@ -18,10 +18,10 @@
       @filter="filterFn"
       @popup-show='togglePopupShowing'
       @popup-hide='togglePopupShowing'
-      v-bind:class='{pb490: popupShowing}'
+      v-bind:class='{pb330: popupShowing}'
     )
       template(v-slot:option="scope")
-        q-item(v-bind="scope.itemProps" v-on="scope.itemEvents")
+        q-item(v-bind="scope.itemProps" v-on="scope.itemEvents" dense)
           q-item-section(@mouseover='mouseoverSelected(scope.index)') {{scope.opt}}
       template(v-slot:error) {{errors[0] | capitalize}}
 </template>
@@ -133,11 +133,9 @@ export default {
             this.errors = errors.response.data.name;
           },
         )
-        .finally(
-          () => {
-            this.loading = false;
-          },
-        );
+        .finally(() => {
+          this.loading = false;
+        });
     },
     passNameToNewOrganization() {
       this.$emit('blur', this.name);
@@ -147,7 +145,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.pb490 {
-  padding-bottom: 490px;
+.pb330 {
+  padding-bottom: 330px;
 }
 </style>

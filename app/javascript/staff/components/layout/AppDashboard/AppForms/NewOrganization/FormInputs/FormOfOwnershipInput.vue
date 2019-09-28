@@ -86,11 +86,9 @@ export default {
             this.errors = errors.response.data.form_of_ownership;
           },
         )
-        .finally(
-          () => {
-            this.loading = false;
-          },
-        );
+        .finally(() => {
+          this.loading = false;
+        });
     },
     passFormOfOwnershipToNewOrganization() {
       this.$emit('blur', this.formOfOwnership);

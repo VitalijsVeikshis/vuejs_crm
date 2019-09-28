@@ -86,11 +86,9 @@ export default {
             this.errors = errors.response.data;
           },
         )
-        .finally(
-          () => {
-            this.$q.loading.hide();
-          },
-        );
+        .finally(() => {
+          this.$q.loading.hide();
+        });
     },
     setName(value) {
       this.organization.name = value;
