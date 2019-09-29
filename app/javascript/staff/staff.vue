@@ -1,8 +1,9 @@
 <template lang='pug'>
   #staff
-    q-layout(view="hHh lpR fFf")
+    q-layout(view="hHh Lpr fFf")
       q-header(elevated)
         app-navbar(v-bind:userEmail="userEmail")
+      leftDrawer
       q-page-container
         q-page.doc-page
           p {{ message }}
@@ -12,11 +13,13 @@
 <script>
 import AppNavbar from './components/layout/AppNavbar/AppNavbar.vue';
 import AppDashboard from './components/layout/AppDashboard/AppDashboard.vue';
+import leftDrawer from './components/layout/AppDrawers/LeftDrawer.vue';
 
 export default {
   components: {
     AppNavbar,
     AppDashboard,
+    leftDrawer,
   },
   data() {
     return {

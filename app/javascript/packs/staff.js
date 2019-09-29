@@ -34,6 +34,8 @@ import {
   QItem,
   QItemSection,
   QItemLabel,
+  QIcon,
+  QScrollArea,
 } from 'quasar';
 
 import '../shared/utils/filters';
@@ -74,6 +76,8 @@ Vue.use(Quasar, {
     QItem,
     QItemSection,
     QItemLabel,
+    QIcon,
+    QScrollArea,
   },
   directives: {
   },
