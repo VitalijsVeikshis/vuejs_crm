@@ -7,12 +7,8 @@ ruby '2.6.3'
 gem 'devise'
 # Token authentication
 gem 'devise_token_auth'
-# HTTP client library
-gem 'faraday'
 # JSON:API serializer
 gem 'fast_jsonapi'
-# Business logic encapsulation
-gem 'interactor', '~> 3.0'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.0.0'
 # Use postgresql as the database for Active Record

@@ -26,11 +26,23 @@ const organizations = {
   index: () => adapter.get('/staff/organizations'),
   destroy: (id) => adapter.delete(`/staff/organizations/${id}`),
   validate: (organization) => adapter.post('/staff/organizations/validate', { organization }),
-  suggestions: (organization) => adapter.post('/staff/organizations/suggestions', { organization }),
+};
+
+const dadataHeaders = {
+  headers: {
+    contentType: 'application/json',
+    accept: 'application/json',
+    authorization: 'Token ef0aeb0161b15ac82d2b45dbff5dea6c309b50c9',
+  },
+};
+
+const dadata = {
+  suggestions: (query) => axios.post('https://suggestions.dadata.ru/suggestions/api/4_1/rs/suggest/party', { query }, dadataHeaders),
 };
 
 export default {
   clients,
   staffs,
   organizations,
+  dadata,
 };

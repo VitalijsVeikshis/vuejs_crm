@@ -77,21 +77,29 @@ export default {
     },
     fetchSuggestions(val) {
       this.loading = true;
-      this.$api.organizations
-        .suggestions({ name: val })
-        .then(
-          (response) => {
-            this.suggestions = response.data;
-            this.options = response.data.map((suggestion) => suggestion.name);
-            const emptyOptions = new Array(10 - this.options.length).fill('');
-            this.options = [...this.options, ...emptyOptions];
-          },
-        )
+      this.$api.dadata
+        .suggestions(val)
+        .then((response) => {
+          this.suggestions = this.parseSuggestions(response.data.suggestions);
+          this.options = this.suggestions.map((suggestion) => suggestion.name);
+          const emptyOptions = new Array(10 - this.options.length).fill('');
+          this.options = [...this.options, ...emptyOptions];
+        })
         .finally(
           () => {
             this.loading = false;
           },
         );
+    },
+    parseSuggestions(suggestions) {
+      return suggestions.map(
+        (suggestion) => ({
+          name: suggestion.data.name.short,
+          form_of_ownership: suggestion.data.opf.short,
+          inn: suggestion.data.inn,
+          ogrn: suggestion.data.ogrn,
+        }),
+      );
     },
     filterFn(val, update) {
       setTimeout(
