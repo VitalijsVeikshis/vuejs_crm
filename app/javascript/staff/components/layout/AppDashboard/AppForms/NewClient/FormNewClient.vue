@@ -23,7 +23,7 @@
         q-btn(
           label="Добавить"
           type="submit"
-        )
+        )#addClientBtn
 </template>
 
 <script>

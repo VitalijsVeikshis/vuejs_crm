@@ -29,7 +29,7 @@ feature 'Staff can add new organization', %(
       fill_in 'ИНН', with: '123456789123'
       fill_in 'ОГРН', with: '1234567891234'
 
-      click_on 'Add'
+      find('#addOrganizationBtn').click
 
       within '#newOrganization' do
         expect(page).to have_no_content 'Organization Name'
@@ -48,7 +48,7 @@ feature 'Staff can add new organization', %(
 
     describe 'does not add new organization' do
       scenario 'with empty attributes', js: true do
-        click_on 'Add'
+        find('#addOrganizationBtn').click
 
         within '#name' do
           expect(page).to have_content "Can't be blank"

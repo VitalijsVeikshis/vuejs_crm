@@ -9,7 +9,7 @@
     :loading="loading"
     :error="!isValid"
     @blur='validateInputValue'
-  )
+  )#email
     template(v-slot:error) {{errors[0] | capitalize}}
 </template>
 

@@ -10,7 +10,7 @@
     :loading="loading"
     :error="!isValid"
     @blur='validateInputValue'
-  )
+  )#fullname
     template(v-slot:error) {{errors[0] | capitalize}}
 </template>
 

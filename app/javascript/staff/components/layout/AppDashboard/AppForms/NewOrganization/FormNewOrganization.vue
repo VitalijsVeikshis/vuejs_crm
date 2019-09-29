@@ -27,7 +27,7 @@
           q-btn(
             label="Добавить"
             type="submit"
-          )
+          )#addOrganizationBtn
 </template>
 
 <script>

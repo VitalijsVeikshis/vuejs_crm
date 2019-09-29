@@ -19,10 +19,10 @@ feature 'Staff can add new client', %(
     end
 
     scenario 'adds new client' do
-      fill_in 'Fullname', with: 'Client Name'
-      fill_in 'Phone number', with: '1234567'
-      fill_in 'Email', with: 'client@email.com'
-      click_on 'Save'
+      fill_in '#fullname', with: 'Client Name'
+      fill_in '#phone', with: '1234567'
+      fill_in '#email', with: 'client@email.com'
+      find('#addClientBtn').click
 
       within '#clients' do
         expect(page).to have_content 'Client Name'
@@ -36,7 +36,7 @@ feature 'Staff can add new client', %(
         fill_in 'Fullname', with: ''
         fill_in 'Phone number', with: '123456'
         fill_in 'Email', with: 'client@email.com'
-        click_on 'Save'
+        find('#addClientBtn').click
 
         expect(page).to have_content "Can't be blank"
         expect(page).to have_content 'Is too short (minimum is 5 characters)'
@@ -46,7 +46,7 @@ feature 'Staff can add new client', %(
         fill_in 'Fullname', with: 'Client Name'
         fill_in 'Phone number', with: ''
         fill_in 'Email', with: 'client@email.com'
-        click_on 'Save'
+        find('#addClientBtn').click
 
         expect(page).to have_content "Can't be blank"
         expect(page).to have_content 'Is not a number'
@@ -56,7 +56,7 @@ feature 'Staff can add new client', %(
         fill_in 'Fullname', with: 'Client Name'
         fill_in 'Phone number', with: '123456'
         fill_in 'Email', with: ''
-        click_on 'Save'
+        find('#addClientBtn').click
 
         expect(page).to have_content "Can't be blank"
         expect(page).to have_content 'Is invalid'
