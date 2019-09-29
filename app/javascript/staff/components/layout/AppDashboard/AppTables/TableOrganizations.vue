@@ -15,7 +15,7 @@
     )#organizations.full-width
     .row.justify-center
       q-btn(
-        label="Delete"
+        label="Удалить"
         @click="destroy"
         :disable='disableBtn'
       )

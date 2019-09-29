@@ -25,7 +25,7 @@
         )
         .row.justify-center
           q-btn(
-            label="Add"
+            label="Добавить"
             type="submit"
           )
 </template>

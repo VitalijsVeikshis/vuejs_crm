@@ -2,8 +2,8 @@
   q-input(
     ref='fullname'
     type='text'
-    label='Fullname'
-    placeholder='Minimum 5 characters'
+    label='Полное имя'
+    placeholder='Минимум 5 символов'
     v-model='fullname'
     dense
     color='secondary'

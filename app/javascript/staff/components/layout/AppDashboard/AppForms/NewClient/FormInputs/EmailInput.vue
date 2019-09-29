@@ -2,7 +2,7 @@
   q-input(
     ref='email'
     type='email'
-    label='Email'
+    label='Электронная почта'
     v-model='email'
     dense
     color='secondary'

@@ -29,9 +29,9 @@ export default {
         rowsPerPage: 15,
       },
       columns: [
-        { name: 'fullname', label: 'Fullname', field: 'fullname' },
-        { name: 'phone', label: 'Phone number', field: 'phone' },
-        { name: 'email', label: 'Email', field: 'email' },
+        { name: 'fullname', label: 'Полное имя', field: 'fullname' },
+        { name: 'phone', label: 'Номер телефона', field: 'phone' },
+        { name: 'email', label: 'Электронная почта', field: 'email' },
       ],
       data: [],
     };

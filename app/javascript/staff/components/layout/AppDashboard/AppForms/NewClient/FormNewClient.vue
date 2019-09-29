@@ -21,7 +21,7 @@
         )
       .col-1
         q-btn(
-          label="Add"
+          label="Добавить"
           type="submit"
         )
 </template>

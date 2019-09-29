@@ -2,8 +2,8 @@
   q-input(
     ref='phone'
     type='tel'
-    label='Phone number'
-    placeholder='Only digits'
+    label='Номер телефона'
+    placeholder='Только цифры'
     v-model='phone'
     dense
     color='secondary'

@@ -1,5 +1,5 @@
 <template lang='pug'>
-  q-btn(stretch flat label='Log out' type='a' href='/staffs/sign_out')
+  q-btn(stretch flat label='Выйти' type='a' href='/staffs/sign_out')#logoutBtn
 </template>
 
 <script>

@@ -14,7 +14,7 @@ feature 'User can sign out', %(
     scenario 'signed out from application#index' do
       visit root_path
 
-      click_on 'Log out'
+      find('#logoutBtn').click
 
       expect(page).to have_content 'Signed out successfully.'
     end
@@ -22,7 +22,7 @@ feature 'User can sign out', %(
     scenario 'signed out from staff/landing#index' do
       visit staff_root_path
 
-      click_on 'Log out'
+      find('#logoutBtn').click
 
       expect(page).to have_content 'Signed out successfully.'
     end
@@ -36,7 +36,7 @@ feature 'User can sign out', %(
     scenario 'signed out from application#index' do
       visit root_path
 
-      click_on 'Log out'
+      find('#logoutBtn').click
 
       expect(page).to have_content 'Signed out successfully.'
     end
@@ -44,7 +44,7 @@ feature 'User can sign out', %(
     scenario 'signed out from client/landing#index' do
       visit client_root_path
 
-      click_on 'Log out'
+      find('#logoutBtn').click
 
       expect(page).to have_content 'Signed out successfully.'
     end
