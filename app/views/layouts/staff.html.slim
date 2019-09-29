@@ -5,7 +5,8 @@ html
       | VuejsCrm - Staff
     = csrf_meta_tags
     = csp_meta_tag
+  body style="margin: 0;"
+    = yield
+
     = javascript_pack_tag 'staff'
     = stylesheet_pack_tag 'staff'
-  body style="margin: 0;" data-user-email="#{current_user.email}"
-    = yield

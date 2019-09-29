@@ -1,22 +1,93 @@
 import Vue from 'vue';
-import Staff from '../staff.vue';
-import api from '../api/api';
-import 'bootstrap/dist/css/bootstrap.min.css';
+
+import iconSet from 'quasar/icon-set/fontawesome-v5';
+import '@quasar/extras/fontawesome-v5/fontawesome-v5.css';
+
+import '../shared/assets/styles/quasar.styl';
+import 'quasar/dist/quasar.ie.polyfills';
+
+import {
+  Quasar,
+  QLayout,
+  QHeader,
+  QDrawer,
+  QPageContainer,
+  QPage,
+  QToolbar,
+  QToolbarTitle,
+  QAvatar,
+  QSpace,
+  QBtn,
+  QChip,
+  QTable,
+  QTh,
+  QTr,
+  QTd,
+  QForm,
+  QInput,
+  QCard,
+  QSpinner,
+  QSpinnerTail,
+  Loading,
+  QSelect,
+  QList,
+  QItem,
+  QItemSection,
+  QItemLabel,
+} from 'quasar';
+
+import '../shared/utils/filters';
+import api from '../staff/backend/api';
+import Staff from '../staff/staff.vue';
+
+require('../staff/channels');
+
+Vue.use(Quasar, {
+  config: {
+    loading: {
+      spinner: QSpinnerTail,
+    },
+  },
+  components: {
+    QLayout,
+    QHeader,
+    QDrawer,
+    QPageContainer,
+    QPage,
+    QToolbar,
+    QToolbarTitle,
+    QAvatar,
+    QSpace,
+    QBtn,
+    QChip,
+    QTable,
+    QTh,
+    QTr,
+    QTd,
+    QForm,
+    QInput,
+    QCard,
+    QSpinner,
+    QSpinnerTail,
+    QSelect,
+    QList,
+    QItem,
+    QItemSection,
+    QItemLabel,
+  },
+  directives: {
+  },
+  iconSet,
+  plugins: {
+    Loading,
+  },
+});
 
 Vue.prototype.$api = api;
 
 document.addEventListener('DOMContentLoaded', () => {
-  Vue.filter('capitalize', (value) => {
-    if (!value) return '';
-    return value.charAt(0).toUpperCase() + value.slice(1);
-  });
-
   const app = new Vue({
-    render: (h) => h(Staff, {
-      props: {
-        userEmail: document.body.getAttribute('data-user-email'),
-      },
-    }),
+    render: (h) => h(Staff),
   }).$mount();
   document.body.appendChild(app.$el);
 });
