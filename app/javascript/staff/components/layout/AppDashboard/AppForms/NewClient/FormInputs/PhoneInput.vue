@@ -59,7 +59,7 @@ export default {
     },
     validateNotEmpty() {
       if (!this.notEmpty()) {
-        this.errors.push("Can't be blank");
+        this.errors.push('Не может быть пустым');
       }
       return this.notEmpty();
     },
@@ -68,7 +68,7 @@ export default {
     },
     validateNumbers() {
       if (!this.onlyNumbers()) {
-        this.errors.push('Is not a number');
+        this.errors.push('Не является числом');
       }
       return this.onlyNumbers();
     },

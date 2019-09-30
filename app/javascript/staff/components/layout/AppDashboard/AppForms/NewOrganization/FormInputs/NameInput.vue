@@ -126,7 +126,7 @@ export default {
     },
     validateNotEmpty() {
       if (!this.notEmpty()) {
-        this.errors.push("Can't be blank");
+        this.errors.push('Не может быть пустым');
       }
       return this.notEmpty();
     },

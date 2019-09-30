@@ -31,5 +31,8 @@ module VuejsCrm
 
     # Don't generate system test files.
     config.generators.system_tests = nil
+
+    I18n.available_locales = [:ru]
+    I18n.default_locale = :ru
   end
 end

@@ -65,7 +65,7 @@ export default {
     },
     validateNotEmpty() {
       if (!this.notEmpty()) {
-        this.errors.push("Can't be blank");
+        this.errors.push('Не может быть пустым');
       }
       return this.notEmpty();
     },
@@ -74,7 +74,7 @@ export default {
     },
     validateOgrnLength() {
       if (!this.isValidOgrnLength()) {
-        this.errors.push('Please use 13 characters');
+        this.errors.push('Неверной длины (может быть длиной ровно 13 символов)');
       }
       return this.isValidOgrnLength();
     },

@@ -60,7 +60,7 @@ export default {
     },
     validateNotEmpty() {
       if (!this.notEmpty()) {
-        this.errors.push("Can't be blank");
+        this.errors.push('Не может быть пустым');
       }
       return this.notEmpty();
     },
@@ -69,7 +69,7 @@ export default {
     },
     validateEmailFromat() {
       if (!this.isValidEmail()) {
-        this.errors.push('Is invalid');
+        this.errors.push('Имеет неверное значение');
       }
       return this.isValidEmail();
     },

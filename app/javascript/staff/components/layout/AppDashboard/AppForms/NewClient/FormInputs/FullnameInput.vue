@@ -59,7 +59,7 @@ export default {
     },
     validateNotEmpty() {
       if (!this.notEmpty()) {
-        this.errors.push("Can't be blank");
+        this.errors.push('Не может быть пустым');
       }
       return this.notEmpty();
     },
@@ -68,7 +68,7 @@ export default {
     },
     validateLength() {
       if (!this.isValidLength()) {
-        this.errors.push('Is too short (minimum is 5 characters)');
+        this.errors.push('Недостаточной длины (не может быть меньше 5 символов)');
       }
       return this.isValidLength();
     },

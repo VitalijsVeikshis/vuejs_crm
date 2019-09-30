@@ -70,7 +70,7 @@ export default {
     },
     validateNotEmpty() {
       if (!this.notEmpty()) {
-        this.errors.push("Can't be blank");
+        this.errors.push('Не может быть пустым');
       }
       return this.notEmpty();
     },
@@ -79,7 +79,7 @@ export default {
     },
     validateInnLengthIp() {
       if (!this.isValidInnLengthIp() && this.formOfOwnership === 'ip') {
-        this.errors.push('Please use 12 characters');
+        this.errors.push('Неверной длины (может быть длиной ровно 12 символов)');
       }
       return this.isValidInnLengthIp();
     },
@@ -88,7 +88,7 @@ export default {
     },
     validateInnLengthOther() {
       if (!this.isValidInnLengthOther() && this.formOfOwnership !== 'ip') {
-        this.errors.push('Please use 10 characters');
+        this.errors.push('Неверной длины (может быть длиной ровно 10 символов)');
       }
       return this.isValidInnLengthOther();
     },
