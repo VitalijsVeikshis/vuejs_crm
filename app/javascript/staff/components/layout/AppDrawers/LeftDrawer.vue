@@ -38,7 +38,7 @@
             q-icon(name='fas fa-building' color='secondary')
           q-item-section
             strong.secondary Организации
-        q-item(clickable)
+        q-item(clickable :to="{ name: 'staffs' }")
           q-item-section(avatar)
             q-icon(name='fas fa-user-tie' color='secondary')
           q-item-section

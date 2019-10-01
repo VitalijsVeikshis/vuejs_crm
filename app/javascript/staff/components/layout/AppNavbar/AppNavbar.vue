@@ -1,6 +1,6 @@
 <template lang='pug'>
   q-toolbar(row no-wrap items-center).bg-secondary
-    q-btn(stretch flat no-caps type="a" href="/")
+    q-btn(stretch flat no-caps type="a" href="/staff")
       q-avatar(square)
         img(v-bind:src="brandLogo")
       q-toolbar-title Vue.js CRM

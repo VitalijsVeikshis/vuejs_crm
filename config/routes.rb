@@ -23,6 +23,12 @@ Rails.application.routes.draw do
       end
     end
 
+    resources :staffs, only: %i[index create destroy update], shallow: true do
+      collection do
+        post :validate
+      end
+    end
+
     get :current, to: 'staffs#current'
 
     get '/*slug', to: 'landing#index'
@@ -36,6 +42,4 @@ Rails.application.routes.draw do
 
     get '/*slug', to: 'landing#index'
   end
-
-  get '/*slug', to: 'application#index'
 end

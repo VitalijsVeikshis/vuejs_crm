@@ -19,6 +19,11 @@ const clients = {
 
 const staffs = {
   current: () => adapter.get('/staff/current'),
+  create: (staff) => adapter.post('/staff/staffs', { staff }),
+  index: () => adapter.get('/staff/staffs'),
+  destroy: (id) => adapter.delete(`/staff/staffs/${id}`),
+  validate: (staff) => adapter.post('/staff/staffs/validate', { staff }),
+  update: (staff) => adapter.patch('/staff/staffs', { staff }),
 };
 
 const organizations = {
