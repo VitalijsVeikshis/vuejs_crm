@@ -10,7 +10,7 @@ Rails.application.routes.draw do
     root 'landing#index'
     mount_devise_token_auth_for 'Staff', at: 'auth', skip: %i[registrations]
 
-    resources :clients, only: %i[index create], shallow: true do
+    resources :clients, only: %i[index create destroy update], shallow: true do
       collection do
         post :validate
       end

@@ -15,6 +15,8 @@ const clients = {
   post: (client) => adapter.post('/staff/clients', { client }),
   get_index: () => adapter.get('/staff/clients'),
   validate: (client) => adapter.post('/staff/clients/validate', { client }),
+  destroy: (id) => adapter.delete(`/staff/clients/${id}`),
+  update: (client) => adapter.patch('/staff/clients', { client }),
 };
 
 const staffs = {

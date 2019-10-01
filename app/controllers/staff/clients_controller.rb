@@ -2,6 +2,7 @@
 
 class Staff::ClientsController < ApplicationController
   before_action :authenticate_staff!
+  before_action :set_client, only: %i[destroy update]
 
   def index
     @clients = Client.order(created_at: :desc)
@@ -29,6 +30,22 @@ class Staff::ClientsController < ApplicationController
     end
   end
 
+  def destroy
+    if @client.destroy
+      head :no_content
+    else
+      render json: errors_json, status: :unprocessable_entity
+    end
+  end
+
+  def update
+    if @client.update(client_params)
+      head :no_content
+    else
+      render json: errors_json, status: :unprocessable_entity
+    end
+  end
+
   private
 
   def client_params
@@ -40,5 +57,9 @@ class Staff::ClientsController < ApplicationController
       .errors
       .as_json
       .as_json(only: client_params.keys.map(&:to_sym))
+  end
+
+  def set_client
+    @client = Client.find(params[:id])
   end
 end
