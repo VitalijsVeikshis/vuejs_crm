@@ -1,29 +1,27 @@
 <template lang='pug'>
   q-form(@submit.prevent='createClient').full-width
-    .row.justify-center.q-gutter-x-md
-      .col
+    .row.justify-center
+      .col.q-gutter-md
         fullnameInput(
           v-bind:inputErrors="errors.fullname"
           v-model='user.fullname'
           @blur='setFullname'
         )
-      .col
         phoneInput(
           v-bind:inputErrors="errors.phone"
           v-model='user.phone'
           @blur='setPhone'
         )
-      .col
         emailInput(
           v-bind:inputErrors="errors.email"
           v-model='user.email'
           @blur='setEmail'
         )
-      .col-1
-        q-btn(
-          label="Добавить"
-          type="submit"
-        )#addClientBtn
+    .row.justify-center
+      q-btn(
+        label="Добавить"
+        type="submit"
+      )#addClientBtn
 </template>
 
 <script>

@@ -28,12 +28,12 @@
                   icon="fas fa-caret-left"
                   @click="miniState = true"
                 ).secondary
-        q-item(clickable)
+        q-item(clickable :to="{ name: 'clients' }")
           q-item-section(avatar)
             q-icon(name='fas fa-user' color='secondary')
           q-item-section
             strong.secondary Клиенты
-        q-item(clickable)
+        q-item(clickable :to="{ name: 'organizations' }")
           q-item-section(avatar)
             q-icon(name='fas fa-building' color='secondary')
           q-item-section

@@ -9,8 +9,6 @@
       :loading="loading"
       loading-label='Loading clients...'
     ).full-width
-      template(v-slot:top)
-        formNewClient
 </template>
 
 <script>

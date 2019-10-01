@@ -7,20 +7,17 @@
       rightDrawer
       q-page-container
         q-page.doc-page
-          p {{ message }}
-          AppDashboard
+          router-view
 </template>
 
 <script>
 import AppNavbar from './components/layout/AppNavbar/AppNavbar.vue';
-import AppDashboard from './components/layout/AppDashboard/AppDashboard.vue';
 import leftDrawer from './components/layout/AppDrawers/LeftDrawer.vue';
 import rightDrawer from './components/layout/AppDrawers/RightDrawer.vue';
 
 export default {
   components: {
     AppNavbar,
-    AppDashboard,
     leftDrawer,
     rightDrawer,
   },

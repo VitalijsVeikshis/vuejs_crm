@@ -38,6 +38,7 @@ import {
   QScrollArea,
 } from 'quasar';
 
+import router from '../staff/router/index';
 import '../shared/utils/filters';
 import api from '../staff/backend/api';
 import Staff from '../staff/staff.vue';
@@ -92,6 +93,7 @@ Vue.prototype.$api = api;
 document.addEventListener('DOMContentLoaded', () => {
   const app = new Vue({
     render: (h) => h(Staff),
+    router,
   }).$mount();
   document.body.appendChild(app.$el);
 });

@@ -24,6 +24,8 @@ Rails.application.routes.draw do
     end
 
     get :current, to: 'staffs#current'
+
+    get '/*slug', to: 'landing#index'
   end
 
   namespace :client do
@@ -31,5 +33,9 @@ Rails.application.routes.draw do
     mount_devise_token_auth_for 'Client', at: 'auth', skip: %i[registrations]
 
     get :current, to: 'clients#current'
+
+    get '/*slug', to: 'landing#index'
   end
+
+  get '/*slug', to: 'application#index'
 end
