@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Staff::ClientsController < ApplicationController
+class Staff::Api::V1::ClientsController < ApplicationController
   before_action :authenticate_staff!
   before_action :set_client, only: %i[destroy update reset_password]
 

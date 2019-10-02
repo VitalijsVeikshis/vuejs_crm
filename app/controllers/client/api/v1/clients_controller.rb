@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Client::ClientsController < ApplicationController
+class Client::Api::V1::ClientsController < ApplicationController
   before_action :authenticate_client!
 
   def current

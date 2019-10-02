@@ -1,11 +1,11 @@
 import axios from 'axios';
 
 const adapter = axios.create({
-  baseURL: '/',
+  baseURL: '/client/api/v1',
 });
 
 const clients = {
-  current: () => adapter.get('/client/current'),
+  current: () => adapter.get('/current'),
 };
 
 export default {

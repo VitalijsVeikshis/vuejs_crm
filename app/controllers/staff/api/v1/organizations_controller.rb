@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Staff::OrganizationsController < ApplicationController
+class Staff::Api::V1::OrganizationsController < ApplicationController
   before_action :authenticate_staff!
   before_action :set_organization, only: %i[destroy]
 
