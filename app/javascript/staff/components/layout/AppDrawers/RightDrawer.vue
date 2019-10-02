@@ -9,7 +9,7 @@
     content-class="bg-grey-3"
   )
     q-scroll-area.fit
-      q-list(padding)
+      q-list(padding).text-secondary
         q-item
           q-item-section(v-if='miniState' avatar)
             q-btn(
@@ -18,7 +18,7 @@
               unelevated
               icon="fas fa-caret-left"
               @click="miniState = false"
-            ).secondary
+            )
           q-item-section(avatar)
             q-btn(
               dense
@@ -26,7 +26,7 @@
               unelevated
               icon="fas fa-caret-right"
               @click="miniState = true"
-            ).secondary
+            )
           q-item-section(side) Сообщения
 </template>
 
@@ -40,9 +40,3 @@ export default {
   },
 };
 </script>
-
-<style scoped lang="scss">
-.secondary {
-  color: #273849;
-}
-</style>

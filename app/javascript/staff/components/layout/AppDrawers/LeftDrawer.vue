@@ -8,7 +8,7 @@
     content-class="bg-grey-3"
   )
     q-scroll-area.fit
-      q-list(padding)
+      q-list(padding).text-secondary
         q-item
           q-item-section(v-if='miniState' avatar)
             q-btn(
@@ -17,7 +17,7 @@
               unelevated
               icon="fas fa-caret-right"
               @click="miniState = false"
-            ).secondary
+            )
           q-item-section
             .row.justify-end
               .col-2
@@ -27,22 +27,22 @@
                   unelevated
                   icon="fas fa-caret-left"
                   @click="miniState = true"
-                ).secondary
+                )
         q-item(clickable :to="{ name: 'clients' }")
           q-item-section(avatar)
-            q-icon(name='fas fa-user' color='secondary')
+            q-icon(name='fas fa-user')
           q-item-section
-            strong.secondary Клиенты
+            strong Клиенты
         q-item(clickable :to="{ name: 'organizations' }")
           q-item-section(avatar)
-            q-icon(name='fas fa-building' color='secondary')
+            q-icon(name='fas fa-building')
           q-item-section
-            strong.secondary Организации
+            strong Организации
         q-item(clickable :to="{ name: 'staffs' }")
           q-item-section(avatar)
-            q-icon(name='fas fa-user-tie' color='secondary')
+            q-icon(name='fas fa-user-tie')
           q-item-section
-            strong.secondary Сотрудники
+            strong Сотрудники
 </template>
 
 <script>
@@ -53,11 +53,11 @@ export default {
       miniState: false,
     };
   },
+  methods: {
+    clickMenu(value) {
+      this.activeMenu = {};
+      this.activeMenu[value.value] = true;
+    },
+  },
 };
 </script>
-
-<style scoped lang="scss">
-.secondary {
-  color: #273849;
-}
-</style>
