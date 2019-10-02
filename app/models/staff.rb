@@ -12,6 +12,10 @@ class Staff < ApplicationRecord
 
   before_validation :set_password, unless: :persisted?
 
+  def reset_password!
+    set_password
+  end
+
   private
 
   def set_password

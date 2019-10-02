@@ -31,6 +31,10 @@ Rails.application.routes.draw do
       collection do
         post :validate
       end
+
+      member do
+        patch :reset_password
+      end
     end
 
     get :current, to: 'staffs#current'

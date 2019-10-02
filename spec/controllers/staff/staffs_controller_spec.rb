@@ -186,4 +186,24 @@ RSpec.describe Staff::StaffsController, type: :controller do
       expect(response_json.to_json).to eq staffs_json
     end
   end
+
+  describe 'PATCH #reset_password' do
+    let!(:staff) { create(:staff) }
+    let(:options) { { id: staff } }
+    let(:request_params) { { method: :patch, action: :reset_password, options: options, format: :json } }
+
+    it 'changes staff password' do
+      old_encrypted_password = staff.encrypted_password
+      do_request(request_params)
+      staff.reload
+
+      expect(staff.encrypted_password).not_to eq old_encrypted_password
+    end
+
+    it 'sends to staff email with password reset instructions' do
+      expect do
+        do_request(request_params)
+      end.to change { ActionMailer::Base.deliveries.count }.by(1)
+    end
+  end
 end
