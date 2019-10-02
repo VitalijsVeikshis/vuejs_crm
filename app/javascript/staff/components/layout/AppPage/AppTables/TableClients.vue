@@ -14,11 +14,19 @@
       row-key="id"
     ).full-width
     .row.justify-center
-      q-btn(
-        label="Удалить"
-        @click="destroy"
-        :disable='disableBtn'
-      )
+      .col
+        q-btn(
+          label="Удалить"
+          @click="destroy"
+          :disable='disableBtn'
+        )
+      .col
+        q-btn(
+          label="Сбросить пароль"
+          no-wrap
+          @click="reset"
+          :disable='disableBtn'
+        )
 </template>
 
 <script>
@@ -77,6 +85,23 @@ export default {
               .then(() => {
                 this.selected = [];
                 this.onRequest();
+              })
+              .finally(() => {
+                this.$q.loading.hide();
+              });
+          },
+        );
+      }
+    },
+    reset() {
+      this.$q.loading.show();
+      if (this.selected.length > 0) {
+        this.selected.forEach(
+          (client) => {
+            this.$api.clients
+              .reset_password(client.id)
+              .then(() => {
+                this.selected = [];
               })
               .finally(() => {
                 this.$q.loading.hide();

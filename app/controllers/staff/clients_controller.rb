@@ -2,7 +2,7 @@
 
 class Staff::ClientsController < ApplicationController
   before_action :authenticate_staff!
-  before_action :set_client, only: %i[destroy update]
+  before_action :set_client, only: %i[destroy update reset_password]
 
   def index
     @clients = Client.order(created_at: :desc)
@@ -44,6 +44,13 @@ class Staff::ClientsController < ApplicationController
     else
       render json: errors_json, status: :unprocessable_entity
     end
+  end
+
+  def reset_password
+    @client.reset_password!
+    @client.send_reset_password_instructions
+
+    head :no_content
   end
 
   private

@@ -170,4 +170,24 @@ RSpec.describe Staff::ClientsController, type: :controller do
       end
     end
   end
+
+  describe 'PATCH #reset_password' do
+    let!(:client) { create(:client) }
+    let(:options) { { id: client } }
+    let(:request_params) { { method: :patch, action: :reset_password, options: options, format: :json } }
+
+    it 'changes client password' do
+      old_encrypted_password = client.encrypted_password
+      do_request(request_params)
+      client.reload
+
+      expect(client.encrypted_password).not_to eq old_encrypted_password
+    end
+
+    it 'sends to client email with password reset instructions' do
+      expect do
+        do_request(request_params)
+      end.to change { ActionMailer::Base.deliveries.count }.by(1)
+    end
+  end
 end

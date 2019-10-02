@@ -14,6 +14,10 @@ Rails.application.routes.draw do
       collection do
         post :validate
       end
+
+      member do
+        patch :reset_password
+      end
     end
 
     resources :organizations, only: %i[index create destroy], shallow: true do
