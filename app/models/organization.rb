@@ -6,6 +6,8 @@ class Organization < ApplicationRecord
 
   enum form_of_ownership: %w[ИП ООО КФХ АО ПАО ЗАО]
 
+  has_many :equipments, dependent: :destroy
+
   validates :name, presence: true,
                    uniqueness: { case_sensitive: false }
   validates :form_of_ownership, presence: true
