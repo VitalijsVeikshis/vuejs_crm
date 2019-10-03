@@ -5,6 +5,8 @@ require 'rails_helper'
 RSpec.describe Organization, type: :model do
   describe 'Associations' do
     it { should have_many(:equipments).dependent(:destroy) }
+    it { should have_many(:interactions) }
+    it { should have_many(:clients).through(:interactions).dependent(:destroy) }
   end
 
   describe 'Validations' do

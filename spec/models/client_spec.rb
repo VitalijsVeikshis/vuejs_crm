@@ -3,6 +3,11 @@
 require 'rails_helper'
 
 RSpec.describe Client, type: :model do
+  describe 'Associations' do
+    it { should have_many(:interactions) }
+    it { should have_many(:organizations).through(:interactions).dependent(:destroy) }
+  end
+
   describe 'Validations' do
     it { should validate_presence_of :fullname }
     it { should validate_length_of(:fullname).is_at_least(5) }
