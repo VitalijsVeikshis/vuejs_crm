@@ -1,17 +1,7 @@
 <template lang='pug'>
-  q-form(@submit.prevent='createClient').full-width
+  q-form(@submit.prevent='updateStaff').full-width
     .row.justify-center
       .col.q-gutter-md
-        fullnameInput(
-          v-bind:inputErrors="errors.fullname"
-          v-model='user.fullname'
-          @blur='setFullname'
-        )
-        phoneInput(
-          v-bind:inputErrors="errors.phone"
-          v-model='user.phone'
-          @blur='setPhone'
-        )
         emailInput(
           v-bind:inputErrors="errors.email"
           v-model='user.email'
@@ -19,43 +9,69 @@
         )
     .row.justify-center
       q-btn(
-        label="Добавить"
+        label="Обновить"
         type="submit"
       )#addClientBtn
 </template>
 
 <script>
-import fullnameInput from './FormInputs/FullnameInput.vue';
-import phoneInput from './FormInputs/PhoneInput.vue';
 import emailInput from './FormInputs/EmailInput.vue';
 import eventBus from '../../../../../utils/EventBus';
 
 export default {
   components: {
-    fullnameInput,
-    phoneInput,
     emailInput,
+  },
+  props: {
+    id: { type: String, default: '' },
   },
   data() {
     return {
       user: {
-        fullname: '',
-        phone: '',
         email: '',
       },
       errors: [],
     };
   },
+  watch: {
+    email() {
+      this.user.email = this.email;
+    },
+  },
+  created() {
+    this.onRequest();
+  },
   methods: {
-    createClient() {
+    onRequest() {
       this.$q.loading.show();
-      this.$api.clients
-        .post({ fullname: this.user.fullname, phone: this.user.phone, email: this.user.email })
+      this.$api.staffs
+        .edit(this.id)
+        .then(
+          (response) => {
+            this.user = {
+              email: response.data.data.attributes.email,
+            };
+          },
+          (errors) => {
+            this.errors = errors.response.data;
+          },
+        )
+        .finally(() => {
+          this.$q.loading.hide();
+        });
+    },
+    updateStaff() {
+      this.$q.loading.show();
+      this.$api.staffs
+        .update(
+          this.id,
+          { email: this.user.email },
+        )
         .then(
           () => {
             this.user = {};
             this.errors = [];
-            this.handleCreateClient();
+            eventBus.$emit('dialogHide');
             this.$router.go(-1);
           },
           (errors) => {
@@ -69,15 +85,9 @@ export default {
     setEmail(value) {
       this.user.email = value;
     },
-    setFullname(value) {
-      this.user.fullname = value;
-    },
-    setPhone(value) {
-      this.user.phone = value;
-    },
-    handleCreateClient() {
-      eventBus.$emit('createClient');
-    },
   },
 };
 </script>
+
+<style scoped lang="scss">
+</style>

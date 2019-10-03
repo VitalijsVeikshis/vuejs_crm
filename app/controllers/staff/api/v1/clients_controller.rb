@@ -2,7 +2,7 @@
 
 class Staff::Api::V1::ClientsController < ApplicationController
   before_action :authenticate_staff!
-  before_action :set_client, only: %i[destroy update reset_password]
+  before_action :set_client, only: %i[destroy update reset_password edit]
 
   def index
     @clients = Client.order(created_at: :desc)
@@ -36,6 +36,10 @@ class Staff::Api::V1::ClientsController < ApplicationController
     else
       render json: errors_json, status: :unprocessable_entity
     end
+  end
+
+  def edit
+    render json: ClientSerializer.new(@client).serialized_json, status: :ok
   end
 
   def update

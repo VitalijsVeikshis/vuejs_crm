@@ -2,7 +2,7 @@
 
 class Staff::Api::V1::StaffsController < ApplicationController
   before_action :authenticate_staff!
-  before_action :set_staff, only: %i[destroy update reset_password]
+  before_action :set_staff, only: %i[destroy update reset_password edit]
 
   def current
     render json: StaffSerializer.new(current_user).serialized_json
@@ -41,6 +41,10 @@ class Staff::Api::V1::StaffsController < ApplicationController
     else
       render json: errors_json, status: :unprocessable_entity
     end
+  end
+
+  def edit
+    render json: StaffSerializer.new(@staff).serialized_json, status: :ok
   end
 
   def update

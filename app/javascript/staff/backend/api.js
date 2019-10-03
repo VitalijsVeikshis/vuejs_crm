@@ -16,8 +16,9 @@ const clients = {
   get_index: () => adapter.get('/clients'),
   validate: (client) => adapter.post('/clients/validate', { client }),
   destroy: (id) => adapter.delete(`/clients/${id}`),
-  update: (client) => adapter.patch('/clients', { client }),
   reset_password: (id) => adapter.patch(`/clients/${id}/reset_password`),
+  edit: (id) => adapter.get(`/clients/${id}/edit`),
+  update: (id, client) => adapter.patch(`/clients/${id}`, { client }),
 };
 
 const staffs = {
@@ -26,8 +27,9 @@ const staffs = {
   index: () => adapter.get('/staffs'),
   destroy: (id) => adapter.delete(`/staffs/${id}`),
   validate: (staff) => adapter.post('/staffs/validate', { staff }),
-  update: (staff) => adapter.patch('/staffs', { staff }),
   reset_password: (id) => adapter.patch(`/staffs/${id}/reset_password`),
+  edit: (id) => adapter.get(`/staffs/${id}/edit`),
+  update: (id, staff) => adapter.patch(`/staffs/${id}`, { staff }),
 };
 
 const organizations = {

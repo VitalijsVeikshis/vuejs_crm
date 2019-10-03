@@ -12,7 +12,7 @@ Rails.application.routes.draw do
 
     namespace :api do
       namespace :v1 do
-        resources :clients, only: %i[index create destroy update], shallow: true do
+        resources :clients, only: %i[index create destroy update edit], shallow: true do
           collection do
             post :validate
           end
@@ -29,7 +29,7 @@ Rails.application.routes.draw do
           end
         end
 
-        resources :staffs, only: %i[index create destroy update], shallow: true do
+        resources :staffs, only: %i[index create destroy update edit], shallow: true do
           collection do
             post :validate
           end

@@ -13,36 +13,50 @@
       loading-label='Loading clients...'
       row-key="id"
     ).full-width
-    .row.justify-center
-      .col
-        q-btn(
-          label="Удалить"
-          @click="destroy"
-          :disable='disableBtn'
-        )
-      .col
-        q-btn(
-          label="Сбросить пароль"
-          no-wrap
-          @click="reset"
-          :disable='disableBtn'
-        )
+      template(v-slot:top)
+        .row.justify-center
+          .col
+            q-btn(
+              label="Добавить"
+              :to="{ name: 'addClient' }"
+            )
+          .col
+            q-btn(
+              label="Удалить"
+              @click="destroy"
+              :disable='disableBtn'
+            )
+          .col
+            q-btn(
+              label="Сбросить пароль"
+              no-wrap
+              @click="reset"
+              :disable='disableBtn'
+            )
+      template(v-slot:body-cell-edit="cellProperties")
+        q-td(:props="cellProperties")
+          q-btn(
+              label="Редактировать"
+              no-wrap
+              :to="{ name: 'editClient', params: { id: cellProperties.row.id.toString() } }"
+            )
+    router-view
 </template>
 
 <script>
-import formNewClient from '../AppForms/NewClient/FormNewClient.vue';
+import addClientDialog from '../../AppDialogs/AddClientDialog.vue';
 import eventBus from '../../../../utils/EventBus';
 
 export default {
   components: {
-    formNewClient,
+    addClientDialog,
   },
   data() {
     return {
       disableBtn: true,
       loading: false,
       selected: [],
-      visibleColumns: ['fullname', 'phone', 'email'],
+      visibleColumns: ['fullname', 'phone', 'email', 'edit'],
       pagination: {
         page: 1,
         rowsPerPage: 15,
@@ -52,6 +66,7 @@ export default {
         { name: 'fullname', label: 'Полное имя', field: 'fullname' },
         { name: 'phone', label: 'Номер телефона', field: 'phone' },
         { name: 'email', label: 'Электронная почта', field: 'email' },
+        { name: 'edit', label: '', field: 'edit' },
       ],
       data: [],
     };
@@ -63,6 +78,9 @@ export default {
   },
   mounted() {
     eventBus.$on('createClient', () => {
+      this.onRequest();
+    });
+    eventBus.$on('dialogHide', () => {
       this.onRequest();
     });
     this.onRequest();

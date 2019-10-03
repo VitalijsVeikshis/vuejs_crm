@@ -40,6 +40,7 @@ export default {
             this.user = {};
             this.errors = [];
             this.handleCreateStaff();
+            this.$router.go(-1);
           },
           (errors) => {
             this.errors = errors.response.data;

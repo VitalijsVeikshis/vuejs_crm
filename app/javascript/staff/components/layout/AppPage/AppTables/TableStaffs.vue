@@ -13,20 +13,34 @@
       loading-label='Loading staffs...'
       row-key="id"
     ).full-width
-    .row.justify-center
-      .col
-        q-btn(
-          label="Удалить"
-          @click="destroy"
-          :disable='disableBtn'
-        )
-      .col
-        q-btn(
-          label="Сбросить пароль"
-          no-wrap
-          @click="reset"
-          :disable='disableBtn'
-        )
+      template(v-slot:top)
+        .row.justify-center
+          .col
+            q-btn(
+              label="Добавить"
+              :to="{ name: 'addStaff' }"
+            )
+          .col
+            q-btn(
+              label="Удалить"
+              @click="destroy"
+              :disable='disableBtn'
+            )
+          .col
+            q-btn(
+              label="Сбросить пароль"
+              no-wrap
+              @click="reset"
+              :disable='disableBtn'
+            )
+      template(v-slot:body-cell-edit="cellProperties")
+        q-td(:props="cellProperties")
+          q-btn(
+              label="Редактировать"
+              no-wrap
+              :to="{ name: 'editStaff', params: { id: cellProperties.row.id.toString() } }"
+            )
+    router-view
 </template>
 
 <script>
@@ -38,7 +52,7 @@ export default {
       disableBtn: true,
       loading: false,
       selected: [],
-      visibleColumns: ['email'],
+      visibleColumns: ['email', 'edit'],
       pagination: {
         page: 1,
         rowsPerPage: 15,
@@ -46,6 +60,7 @@ export default {
       columns: [
         { name: 'id', label: 'ID', field: 'id' },
         { name: 'email', label: 'Электронная почта', field: 'email' },
+        { name: 'edit', label: '', field: 'edit' },
       ],
       data: [],
     };
@@ -57,6 +72,9 @@ export default {
   },
   mounted() {
     eventBus.$on('createStaff', () => {
+      this.onRequest();
+    });
+    eventBus.$on('dialogHide', () => {
       this.onRequest();
     });
     this.onRequest();

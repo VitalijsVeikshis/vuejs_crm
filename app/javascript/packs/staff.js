@@ -26,6 +26,8 @@ import {
   QForm,
   QInput,
   QCard,
+  QCardSection,
+  QCardActions,
   QSpinner,
   QSpinnerTail,
   Loading,
@@ -36,6 +38,8 @@ import {
   QItemLabel,
   QIcon,
   QScrollArea,
+  QDialog,
+  ClosePopup,
 } from 'quasar';
 
 import router from '../staff/router/index';
@@ -70,6 +74,8 @@ Vue.use(Quasar, {
     QForm,
     QInput,
     QCard,
+    QCardSection,
+    QCardActions,
     QSpinner,
     QSpinnerTail,
     QSelect,
@@ -79,8 +85,10 @@ Vue.use(Quasar, {
     QItemLabel,
     QIcon,
     QScrollArea,
+    QDialog,
   },
   directives: {
+    ClosePopup,
   },
   iconSet,
   plugins: {
