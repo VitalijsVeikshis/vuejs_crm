@@ -43,6 +43,11 @@ const interactions = {
   create: (interaction) => adapter.post('/interactions', { interaction }),
 };
 
+const equipments = {
+  create: (organizationId, equipment) => adapter.post(`/organizations/${organizationId}/equipments`, { equipment }),
+  validate: (organizationId, equipment) => adapter.post(`/organizations/${organizationId}/equipments/validate`, { equipment }),
+};
+
 const dadataHeaders = {
   headers: {
     contentType: 'application/json',
@@ -61,4 +66,5 @@ export default {
   organizations,
   dadata,
   interactions,
+  equipments,
 };

@@ -13,12 +13,20 @@
       :selected.sync="selected"
       row-key="id"
     )#organizations.full-width
-    .row.justify-center
+      template(v-slot:body-cell-actions="cellProperties")
+        q-td(:props="cellProperties")
+          q-btn(
+            label="Оборудование"
+            no-wrap
+            :to="{ name: 'addEquipment', params: { id: cellProperties.row.id.toString() } }"
+          )
+    .row.justify-center.q-gutter-md
       q-btn(
         label="Удалить"
         @click="destroy"
         :disable='disableBtn'
       )
+    router-view
 </template>
 
 <script>
@@ -29,7 +37,7 @@ export default {
     return {
       disableBtn: true,
       selected: [],
-      visibleColumns: ['name', 'formOfOwnership', 'inn', 'ogrn'],
+      visibleColumns: ['name', 'formOfOwnership', 'inn', 'ogrn', 'actions'],
       loading: false,
       pagination: {
         page: 1,
@@ -41,6 +49,7 @@ export default {
         { name: 'formOfOwnership', label: 'Форма собственности', field: 'formOfOwnership' },
         { name: 'inn', label: 'ИНН', field: 'inn' },
         { name: 'ogrn', label: 'ОГРН', field: 'ogrn' },
+        { name: 'actions', label: '', field: 'actions' },
       ],
       data: [],
     };

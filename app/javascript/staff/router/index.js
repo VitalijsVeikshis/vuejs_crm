@@ -9,6 +9,7 @@ import addClientDialog from '../components/layout/AppDialogs/AddClientDialog.vue
 import editStaffDialog from '../components/layout/AppDialogs/EditStaffDialog.vue';
 import addStaffDialog from '../components/layout/AppDialogs/AddStaffDialog.vue';
 import bindOrganizationDialog from '../components/layout/AppDialogs/BindOrganizationDialog.vue';
+import addEquipmentDialog from '../components/layout/AppDialogs/AddEquipmentDialog.vue';
 
 Vue.use(VueRouter);
 
@@ -41,7 +42,19 @@ export default new VueRouter({
         },
       ],
     },
-    { path: '/organizations', component: appOrganizations, name: 'organizations' },
+    {
+      path: '/organizations',
+      component: appOrganizations,
+      name: 'organizations',
+      children: [
+        {
+          path: '/organizations/:id/equipment',
+          component: addEquipmentDialog,
+          name: 'addEquipment',
+          props: true,
+        },
+      ],
+    },
     {
       path: '/staffs',
       component: appStaffs,

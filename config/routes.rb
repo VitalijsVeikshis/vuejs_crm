@@ -27,6 +27,12 @@ Rails.application.routes.draw do
             post :validate
             post :suggestions
           end
+
+          resources :equipments, only: %i[create], shallow: true do
+            collection do
+              post :validate
+            end
+          end
         end
 
         resources :staffs, only: %i[index create destroy update edit], shallow: true do
