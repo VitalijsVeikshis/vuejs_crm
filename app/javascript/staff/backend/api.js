@@ -39,6 +39,10 @@ const organizations = {
   validate: (organization) => adapter.post('/organizations/validate', { organization }),
 };
 
+const interactions = {
+  create: (interaction) => adapter.post('/interactions', { interaction }),
+};
+
 const dadataHeaders = {
   headers: {
     contentType: 'application/json',
@@ -56,4 +60,5 @@ export default {
   staffs,
   organizations,
   dadata,
+  interactions,
 };

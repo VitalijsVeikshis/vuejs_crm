@@ -8,6 +8,7 @@ import editClientDialog from '../components/layout/AppDialogs/EditClientDialog.v
 import addClientDialog from '../components/layout/AppDialogs/AddClientDialog.vue';
 import editStaffDialog from '../components/layout/AppDialogs/EditStaffDialog.vue';
 import addStaffDialog from '../components/layout/AppDialogs/AddStaffDialog.vue';
+import bindOrganizationDialog from '../components/layout/AppDialogs/BindOrganizationDialog.vue';
 
 Vue.use(VueRouter);
 
@@ -31,6 +32,12 @@ export default new VueRouter({
           path: '/clients/add',
           component: addClientDialog,
           name: 'addClient',
+        },
+        {
+          path: '/clients/bind/organization',
+          component: bindOrganizationDialog,
+          name: 'bindOrganization',
+          props: true,
         },
       ],
     },

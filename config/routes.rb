@@ -39,6 +39,8 @@ Rails.application.routes.draw do
           end
         end
 
+        resources :interactions, only: %i[create], shallow: true
+
         get :current, to: 'staffs#current'
       end
     end
