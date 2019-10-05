@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Client::ClientsController, type: :controller do
+RSpec.describe Client::Api::V1::ClientsController, type: :controller do
   describe 'GET #current' do
     let(:client) { create(:client) }
     let(:request_params) { { method: :get, action: :current, format: :json } }

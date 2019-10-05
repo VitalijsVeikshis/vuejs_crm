@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Staff::ClientsController, type: :controller do
+RSpec.describe Staff::Api::V1::ClientsController, type: :controller do
   let(:staff) { create(:staff) }
 
   before { sign_in_as(staff) }
