@@ -26,6 +26,8 @@ import {
   QForm,
   QInput,
   QCard,
+  QCardSection,
+  QCardActions,
   QSpinner,
   QSpinnerTail,
   Loading,
@@ -34,8 +36,13 @@ import {
   QItem,
   QItemSection,
   QItemLabel,
+  QIcon,
+  QScrollArea,
+  QDialog,
+  ClosePopup,
 } from 'quasar';
 
+import router from '../staff/router/index';
 import '../shared/utils/filters';
 import api from '../staff/backend/api';
 import Staff from '../staff/staff.vue';
@@ -67,6 +74,8 @@ Vue.use(Quasar, {
     QForm,
     QInput,
     QCard,
+    QCardSection,
+    QCardActions,
     QSpinner,
     QSpinnerTail,
     QSelect,
@@ -74,8 +83,12 @@ Vue.use(Quasar, {
     QItem,
     QItemSection,
     QItemLabel,
+    QIcon,
+    QScrollArea,
+    QDialog,
   },
   directives: {
+    ClosePopup,
   },
   iconSet,
   plugins: {
@@ -88,6 +101,7 @@ Vue.prototype.$api = api;
 document.addEventListener('DOMContentLoaded', () => {
   const app = new Vue({
     render: (h) => h(Staff),
+    router,
   }).$mount();
   document.body.appendChild(app.$el);
 });

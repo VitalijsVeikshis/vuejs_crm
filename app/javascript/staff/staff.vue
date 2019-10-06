@@ -1,22 +1,25 @@
 <template lang='pug'>
   #staff
-    q-layout(view="hHh lpR fFf")
+    q-layout(view="hHh LpR fFf")
       q-header(elevated)
         app-navbar(v-bind:userEmail="userEmail")
+      leftDrawer
+      rightDrawer
       q-page-container
         q-page.doc-page
-          p {{ message }}
-          AppDashboard
+          router-view
 </template>
 
 <script>
 import AppNavbar from './components/layout/AppNavbar/AppNavbar.vue';
-import AppDashboard from './components/layout/AppDashboard/AppDashboard.vue';
+import leftDrawer from './components/layout/AppDrawers/LeftDrawer.vue';
+import rightDrawer from './components/layout/AppDrawers/RightDrawer.vue';
 
 export default {
   components: {
     AppNavbar,
-    AppDashboard,
+    leftDrawer,
+    rightDrawer,
   },
   data() {
     return {

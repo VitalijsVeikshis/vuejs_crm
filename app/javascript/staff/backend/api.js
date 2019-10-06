@@ -8,24 +8,44 @@ axios.defaults.headers.common = {
 };
 
 const adapter = axios.create({
-  baseURL: '/',
+  baseURL: '/staff/api/v1',
 });
 
 const clients = {
-  post: (client) => adapter.post('/staff/clients', { client }),
-  get_index: () => adapter.get('/staff/clients'),
-  validate: (client) => adapter.post('/staff/clients/validate', { client }),
+  post: (client) => adapter.post('/clients', { client }),
+  get_index: () => adapter.get('/clients'),
+  validate: (client) => adapter.post('/clients/validate', { client }),
+  destroy: (id) => adapter.delete(`/clients/${id}`),
+  reset_password: (id) => adapter.patch(`/clients/${id}/reset_password`),
+  edit: (id) => adapter.get(`/clients/${id}/edit`),
+  update: (id, client) => adapter.patch(`/clients/${id}`, { client }),
 };
 
 const staffs = {
-  current: () => adapter.get('/staff/current'),
+  current: () => adapter.get('/current'),
+  create: (staff) => adapter.post('/staffs', { staff }),
+  index: () => adapter.get('/staffs'),
+  destroy: (id) => adapter.delete(`/staffs/${id}`),
+  validate: (staff) => adapter.post('/staffs/validate', { staff }),
+  reset_password: (id) => adapter.patch(`/staffs/${id}/reset_password`),
+  edit: (id) => adapter.get(`/staffs/${id}/edit`),
+  update: (id, staff) => adapter.patch(`/staffs/${id}`, { staff }),
 };
 
 const organizations = {
-  create: (organization) => adapter.post('/staff/organizations', { organization }),
-  index: () => adapter.get('/staff/organizations'),
-  destroy: (id) => adapter.delete(`/staff/organizations/${id}`),
-  validate: (organization) => adapter.post('/staff/organizations/validate', { organization }),
+  create: (organization) => adapter.post('/organizations', { organization }),
+  index: () => adapter.get('/organizations'),
+  destroy: (id) => adapter.delete(`/organizations/${id}`),
+  validate: (organization) => adapter.post('/organizations/validate', { organization }),
+};
+
+const interactions = {
+  create: (interaction) => adapter.post('/interactions', { interaction }),
+};
+
+const equipments = {
+  create: (organizationId, equipment) => adapter.post(`/organizations/${organizationId}/equipments`, { equipment }),
+  validate: (organizationId, equipment) => adapter.post(`/organizations/${organizationId}/equipments/validate`, { equipment }),
 };
 
 const dadataHeaders = {
@@ -45,4 +65,6 @@ export default {
   staffs,
   organizations,
   dadata,
+  interactions,
+  equipments,
 };

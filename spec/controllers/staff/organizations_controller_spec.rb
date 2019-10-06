@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Staff::OrganizationsController, type: :controller do
+RSpec.describe Staff::Api::V1::OrganizationsController, type: :controller do
   let(:staff) { create(:staff) }
 
   before { sign_in_as(staff) }
@@ -46,7 +46,7 @@ RSpec.describe Staff::OrganizationsController, type: :controller do
       it 'returns errors as json' do
         do_request(request_params)
 
-        expect(response_json.dig('name')).to eq ["can't be blank"]
+        expect(response_json.dig('name')).to eq ['не может быть пустым']
       end
 
       it 'renders json with status :unprocessable_entity' do
@@ -112,7 +112,7 @@ RSpec.describe Staff::OrganizationsController, type: :controller do
       it 'returns errors as json' do
         do_request(request_params)
 
-        expect(response_json.dig('name')).to eq ['has already been taken']
+        expect(response_json.dig('name')).to eq ['уже существует']
       end
 
       it 'renders json with status :unprocessable_entity' do
